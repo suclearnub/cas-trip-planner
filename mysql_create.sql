@@ -3,6 +3,7 @@ CREATE TABLE `users` (
 	`firstName` varchar(100) NOT NULL,
 	`middleName` varchar(100),
 	`lastName` varchar(100) NOT NULL,
+	`gender` varchar(100) NOT NULL,
 	`email` varchar(100) NOT NULL,
 	`password` varchar(100) NOT NULL,
 	PRIMARY KEY (`userNo`)
@@ -88,4 +89,3 @@ ALTER TABLE `tripActivityComments` ADD CONSTRAINT `tripActivityComments_fk1` FOR
 ALTER TABLE `tripComments` ADD CONSTRAINT `tripComments_fk0` FOREIGN KEY (`tripNo`) REFERENCES `trips`(`tripNo`);
 
 ALTER TABLE `tripComments` ADD CONSTRAINT `tripComments_fk1` FOREIGN KEY (`userNo`) REFERENCES `users`(`userNo`);
-
