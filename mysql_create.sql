@@ -3,7 +3,7 @@ CREATE TABLE `users` (
 	`firstName` varchar(100) NOT NULL,
 	`middleName` varchar(100),
 	`lastName` varchar(100) NOT NULL,
-	`gender` varchar(100) NOT NULL,
+	`gender` varchar(1) NOT NULL,
 	`email` varchar(100) NOT NULL,
 	`password` varchar(100) NOT NULL,
 	PRIMARY KEY (`userNo`)
@@ -11,7 +11,7 @@ CREATE TABLE `users` (
 
 CREATE TABLE `permissions` (
 	`permissionNo` INT NOT NULL AUTO_INCREMENT,
-	`description` varchar NOT NULL,
+	`description` varchar(100) NOT NULL,
 	PRIMARY KEY (`permissionNo`)
 );
 
@@ -22,7 +22,7 @@ CREATE TABLE `userPermissions` (
 
 CREATE TABLE `trips` (
 	`tripNo` INT NOT NULL AUTO_INCREMENT,
-	`description` varchar NOT NULL,
+	`description` varchar(1000) NOT NULL,
 	`startDate` DATETIME NOT NULL,
 	`endDate` DATETIME NOT NULL,
 	`confirmed` BOOLEAN NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE `tripParticipants` (
 CREATE TABLE `tripActivities` (
 	`tripActivityNo` INT NOT NULL AUTO_INCREMENT,
 	`tripNo` INT NOT NULL DEFAULT '0',
-	`description` varchar NOT NULL,
+	`description` varchar(1000) NOT NULL,
 	`cost` INT NOT NULL,
 	`confirmed` BOOLEAN NOT NULL DEFAULT '0',
 	`startDate` DATETIME NOT NULL,
@@ -53,22 +53,22 @@ CREATE TABLE `tripActivityComments` (
 	`tripActivityNo` INT NOT NULL,
 	`userNo` INT NOT NULL,
 	`postDate` DATETIME NOT NULL,
-	`message` varchar NOT NULL
+	`message` varchar(1000) NOT NULL
 );
 
 CREATE TABLE `tripComments` (
 	`tripNo` INT NOT NULL,
 	`userNo` INT NOT NULL,
 	`postDate` DATETIME NOT NULL,
-	`message` varchar NOT NULL
+	`message` varchar(1000) NOT NULL
 );
 
 CREATE TABLE `menuItems` (
 	`menuItemNo` INT NOT NULL AUTO_INCREMENT,
-	`text` varchar NOT NULL AUTO_INCREMENT,
-	`desc` varchar NOT NULL AUTO_INCREMENT,
-	`target` varchar NOT NULL AUTO_INCREMENT,
-	`parent` INT NOT NULL AUTO_INCREMENT,
+	`text` varchar(100) NOT NULL,
+	`desc` varchar(100) NOT NULL,
+	`target` varchar(100) NOT NULL,
+	`parent` INT NOT NULL,
 	PRIMARY KEY (`menuItemNo`)
 );
 
