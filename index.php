@@ -14,7 +14,10 @@
 			Sign In
 		</button>
 </form>
-<a href="forgot.php" class="btn btn-lg btn-primay btn-block">Go to Google</a>
+<form action="forgot.php" class="form-signin">
+  <button class="btn btn-lg btn-primary btn-block" type="submit">
+    Forgot Password?
+  </button>
 </div>
 </body>
 </html>
