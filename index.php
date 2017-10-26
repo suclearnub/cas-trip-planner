@@ -1,22 +1,20 @@
 <?php
   require_once("stdlib.php");
   startSession();
-  initPage($title="Login")
+  initPage($title="Login", $styleSheetName="index.css")
  ?>
+<div id="fullscreen_bg" class="fullscreen_bg">
 
-<form action="login.php" method="POST">
-   <div class="form-group">
-     <label for="username">Username</label>
-     <input class="form-control" name="username">
-   </div>
-   <div class="form-group">
-     <label for="password">Password:</label>
-     <input type="password" class="form-control" name="password">
-   </div>
-   <p><a href="reset.php">Forgot your password?</a></p>
-   <p><a href="register.php">
-   <button type="submit" class="btn btn-primary">Login</button>
+<form action="login.php" method="POST" class="form-signin">
+  <h1>
+    <h1 class="form-signin-heading text-muted">Sign In</h1>
+		<input type="text" class="form-control" placeholder="Email" required="" autofocus="">
+		<input type="password" class="form-control" placeholder="Password" required="">
+		<button class="btn btn-lg btn-primary btn-block" type="submit">
+			Sign In
+		</button>
+    <a href="forgot.php" class="btn btn-lg btn-primay btn-block">Go to Google</a>
 </form>
+</div>
 </body>
 </html>
-  
