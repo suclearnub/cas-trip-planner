@@ -37,7 +37,13 @@ body {
   margin: 0 auto;
     margin-top:50px;
 }
-.form-signin .form-signin-heading, .form-signin {
+
+.form-forgot {
+  max-width: 280px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading, .form-signin, .form-fogot{
   margin-bottom: 10px;
 }
 .form-signin .form-control {
