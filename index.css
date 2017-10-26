@@ -46,7 +46,7 @@ body {
 .form-signin .form-signin-heading, .form-signin, .form-fogot{
   margin-bottom: 10px;
 }
-.form-signin .form-control {
+.form-signin .form-control, .form-forgot {
   position: relative;
   font-size: 16px;
   height: auto;
