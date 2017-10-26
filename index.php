@@ -15,7 +15,7 @@
 		</button>
 </form>
 <form action="forgot.php" style="form-signin">
-  <button class="btn btn-warning" type="submit">
+  <button class="btn btn-warning btn-block" type="submit">
     Forgot Password?
   </button>
 </div>
