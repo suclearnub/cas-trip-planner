@@ -17,7 +17,10 @@
 </form>
 <form target="forgot.php" class="form-signin">
   <button class="btn btn-primary btn-block" type="submit">
-    Forgot Password
+    Sign Up
+  </button>
+  <button class="btn btn-warning btn-block" type="submit">
+    Forgot Password?
   </button>
 </form>
 
