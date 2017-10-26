@@ -18,6 +18,7 @@
   <button class="btn btn-lg btn-warning btn-block" type="submit">
     Forgot Password?
   </button>
+</form>
 </div>
 </body>
 </html>
