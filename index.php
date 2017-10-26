@@ -13,8 +13,8 @@
 		<button class="btn btn-lg btn-primary btn-block" type="submit">
 			Sign In
 		</button>
-    <a href="forgot.php" class="btn btn-lg btn-primay btn-block">Go to Google</a>
 </form>
+<a href="forgot.php" class="btn btn-lg btn-primay btn-block">Go to Google</a>
 </div>
 </body>
 </html>
