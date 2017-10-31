@@ -12,7 +12,7 @@
   <input type="text" class="form-control" placeholder="Email address" required="" autofocus="">
   <input type="password" class="form-control" placeholder="Password" required="">
   <button class="btn btn-lg btn-primary btn-block" type="submit">
-    Sign In
+    Welcome to the Planner
   </button>
 </form>
 <form action="signup.php" class="form-misc">
