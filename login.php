@@ -1,12 +1,7 @@
 <?php
 	require_once('stdlib.php');
 	startSession();
-  $serverName = "mysql.cs.carmel.edu.hk";
-  $username = "ansonelsa";
-  $password = "AnsonAnson1299";
-  $dbName = "anson_cs";
-
-  $database = new mysqli($serverName, $username, $password, $dbName);
+  databaseConnect();
   if ($database -> connect_error) {
     die('Connection failed: ' . $database -> connect_error);
   }

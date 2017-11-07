@@ -18,6 +18,16 @@
     # Draws the navbar
   }
 
+  function databaseConnect() {
+    # Initiates a connection to the database
+    $serverName = "mysql.cs.carmel.edu.hk";
+    $username = "ansonelsa";
+    $password = "AnsonAnson1299";
+    $dbName = "anson_cs";
+
+    $database = new mysqli($serverName, $username, $password, $dbName);
+  }
+
   function startSession() {
     # Starts new session and inits variables
     session_start();
