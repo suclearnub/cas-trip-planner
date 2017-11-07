@@ -28,7 +28,7 @@
 
 	} */
 	else{
-		header('Location: index.php');
+		header('Location: fail.php');
 		$_SESSION['attempts']++;
 	}
 ?>
