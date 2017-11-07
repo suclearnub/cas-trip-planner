@@ -19,17 +19,17 @@
     echo("<nav class='navbar navbar-inverse navbar-static-top'>\r\n
 	<div class='container-fluid'>\r\n
 		<div class='navbar-header'>\r\n
-			<a class='navbar-brand' href='#>CAS Trip Planner</a>\r\n
+			<a class='navbar-brand' href='#'>CAS Trip Planner</a>\r\n
 		</div>\r\n
 	<ul class='nav navbar-nav'>\r\n");
   $sql = "SELECT * FROM menuItems";
   if($results -> num_rows > 0) {
     while($row = $results -> fetch_assoc()) {
       if($row['text'] == $currentPage) {
-        echo("<li class='active'><a href='$row[target]'>Home <span class='glyphicon glyphicon-home'></span></a></li>");
+        echo("<li class='active'><a href='$row[target]'>$row[text] <span class='glyphicon glyphicon-home'></span></a></li>");
       }
       else {
-        echo("<li><a href='$row[target]'>Home <span class='glyphicon glyphicon-home'></span></a></li>");
+        echo("<li><a href='$row[target]'>$row[text] <span class='glyphicon glyphicon-home'></span></a></li>");
       }
     }
     echo("
