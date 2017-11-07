@@ -26,6 +26,7 @@
     $dbName = "anson_cs";
 
     $database = new mysqli($serverName, $username, $password, $dbName);
+    return $database;
   }
 
   function startSession() {

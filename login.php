@@ -1,7 +1,7 @@
 <?php
 	require_once('stdlib.php');
 	startSession();
-  databaseConnect();
+  $database = databaseConnect();
   if ($database -> connect_error) {
     die('Connection failed: ' . $database -> connect_error);
   }
