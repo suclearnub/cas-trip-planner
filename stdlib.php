@@ -14,7 +14,7 @@
           <body>\r\n");
 
   }
-  function drawNavBar($currentPage) {
+  function drawNavBar($currentPage, $database) {
     # Draws the navbar
     echo("<nav class='navbar navbar-inverse navbar-static-top'>\r\n
 	<div class='container-fluid'>\r\n
@@ -24,7 +24,7 @@
 	<ul class='nav navbar-nav'>\r\n");
   $sql = "SELECT * FROM menuItems";
   $results = $database -> query($sql);
-  
+
   if($results -> num_rows > 0) {
     while($row = $results -> fetch_assoc()) {
       if($row['text'] == $currentPage) {
