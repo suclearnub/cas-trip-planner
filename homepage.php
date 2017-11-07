@@ -1,6 +1,6 @@
 <?php
 	require_once('stdlib.php');
-  sessionStart();
+  startSession();
 	securePage();
 ?>
 <p>If you see this you are logged in</p>
