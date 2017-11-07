@@ -2,7 +2,7 @@
 	require_once('stdlib.php');
 	startSession();
   $serverName = "mysql.cs.carmel.edu.hk";
-  $username = "anson_cs";
+  $username = "ansonelsa";
   $password = "AnsonAnson1299";
   $dbName = "anson_cs";
 
