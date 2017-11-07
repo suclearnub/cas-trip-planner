@@ -1,6 +1,6 @@
 <?php
 	require_once('stdlib.php');
-	start_Session();
+	startSession();
   $serverName = "mysql.cs.carmel.edu.hk";
   $username = "anson_cs";
   $password = "AnsonAnson1299";
