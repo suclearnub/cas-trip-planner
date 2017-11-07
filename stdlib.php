@@ -28,10 +28,10 @@
   if($results -> num_rows > 0) {
     while($row = $results -> fetch_assoc()) {
       if($row['text'] == $currentPage) {
-        echo("<li class='active'><a href='$row[target]'>$row[text] <span class='glyphicon glyphicon-home'></span></a></li>");
+        echo("<li class='active'><a href='$row[target]'>$row[text] </a></li>");
       }
       else {
-        echo("<li><a href='$row[target]'>$row[text] <span class='glyphicon glyphicon-home'></span></a></li>");
+        echo("<li><a href='$row[target]'>$row[text] </a></li>");
       }
     }
     echo("
