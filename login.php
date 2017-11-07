@@ -18,7 +18,7 @@
 		while($row = $results -> fetch_assoc()) {
 			if($_POST['email'] == $row['email'] && hash('sha256', $_POST['password']) == $row['password']) {
 				$_SESSION['LoggedIn'] = TRUE;
-				header('Location: homepage.php');
+				header('Location: home.php');
 			}
 		}
 	}
