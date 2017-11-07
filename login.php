@@ -16,8 +16,8 @@
 
 	if($results -> num_rows > 0) {
 		while($row = $results -> fetch_assoc()) {
-			if($_POST['email'] == $row['email'] && $_POST['password'] == $row['password']) {
-				$_SESSION['LoggedIn'] == TRUE;
+			if($_POST['email'] == $row['email'] && $_POST['email'] == $row['password']) {
+				$_SESSION['LoggedIn'] = TRUE;
 				header('Location: homepage.php');
 			}
 		}
@@ -27,8 +27,8 @@
 		header('Location: main.php');
 
 	} */
-	else{
-		header('Location: fail.php');
+	else {
 		$_SESSION['attempts']++;
+		header('Location: index.php');
 	}
 ?>
