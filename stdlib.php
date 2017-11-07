@@ -23,6 +23,8 @@
 		</div>\r\n
 	<ul class='nav navbar-nav'>\r\n");
   $sql = "SELECT * FROM menuItems";
+  $results = $database -> query($sql);
+  
   if($results -> num_rows > 0) {
     while($row = $results -> fetch_assoc()) {
       if($row['text'] == $currentPage) {
