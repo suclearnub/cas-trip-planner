@@ -33,7 +33,7 @@
     # Checks if the user is logged in. If not they will be redirected to another page
     startSession();
     if ($_SESSION['LoggedIn'] == FALSE) {
-      header('Location: home.php');
+      header('Location: index.php');
     }
   }
 
