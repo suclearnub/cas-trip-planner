@@ -12,12 +12,21 @@
   }
 
   $sql = "SELECT email, password FROM users";
+  $results = $database -> query($sql);
 
-	if ($_POST['uname'] = "emerald" && $_POST['pass'] == "admin"){
+	if($results -> num_rows > 0) {
+		while($row = $results -> fetch_assoc()) {
+			if($_POST['email'] == $row['email'] && $_POST['email'] == $row['password']) {
+				$_SESSION['LoggedIn'] == TRUE;
+				header('Location: homepage.php');
+			}
+		}
+	}
+	/* if ($_POST['email'] = "emerald" && $_POST['pass'] == "admin"){
 		$_SESSION['LoggedIn'] = TRUE;
 		header('Location: main.php');
 
-	}
+	} */
 	else{
 		header('Location: index.php');
 		$_SESSION['attempts']++;
