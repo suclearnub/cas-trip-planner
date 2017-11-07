@@ -6,3 +6,5 @@
 	drawNavBar($currentPage='Home');
 ?>
 <p>If you see this you are logged in</p>
+</body>
+</html>
