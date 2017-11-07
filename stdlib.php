@@ -37,6 +37,7 @@
 	</div>
 </nav>');
   }
+}
 
   function databaseConnect() {
     # Initiates a connection to the database
@@ -48,7 +49,7 @@
     $database = new mysqli($serverName, $username, $password, $dbName);
     return $database;
   }
-}
+
 
   function startSession() {
     # Starts new session and inits variables
