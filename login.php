@@ -16,17 +16,12 @@
 
 	if($results -> num_rows > 0) {
 		while($row = $results -> fetch_assoc()) {
-			if($_POST['email'] == $row['email'] && $_POST['password'] == $row['password']) {
+			if($_POST['email'] == $row['email'] && hash('sha256', $_POST['password']) == $row['password']) {
 				$_SESSION['LoggedIn'] = TRUE;
 				header('Location: homepage.php');
 			}
 		}
 	}
-	/* if ($_POST['email'] = "emerald" && $_POST['pass'] == "admin"){
-		$_SESSION['LoggedIn'] = TRUE;
-		header('Location: main.php');
-
-	} */
 	else {
 		$_SESSION['attempts']++;
 		header('Location: index.php');
