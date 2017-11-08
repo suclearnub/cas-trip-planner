@@ -8,10 +8,9 @@
 <div class="container-fluid">
 <p>If you see this you are logged in</p>
 <?php
-	$results = $database -> query("SELECT firstName FROM users WHERE email=$_SESSION[email]");
-	$row = $results -> fetch_assoc();
-	echo("<h2>Welcome back, $row[firstName]</h2>");
-	print_r($row);
+/*	$results = $database -> query("SELECT firstName FROM users WHERE email=$_SESSION[email]");
+	$row = $results -> fetch_assoc(); */
+	echo("<h2>Welcome back, $_SESSION[firstName]</h2>");
 ?>
 </div>
 </body>
