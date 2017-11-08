@@ -9,8 +9,9 @@
 <p>If you see this you are logged in</p>
 <?php
 	$results = $database -> query("SELECT firstName FROM users WHERE email=$_SESSION[email]");
-	echo("<h2>Welcome back, $results[firstName]</h2>");
-	print_r($results);
+	$row = $results -> fetch_assoc();
+	echo("<h2>Welcome back, $row[firstName]</h2>");
+	print_r($row);
 ?>
 </div>
 </body>
