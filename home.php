@@ -18,7 +18,7 @@
 	while($row = $results -> fetch_assoc()) {
 		if($row['userPermissions'] == 0 || $row['permissionNo'] == 2) {
 			# If they have unlimited power or permission no. 2, list all the trips
-			drawTable("SELECT * FROM trips", $database, ["Name", "Description", "Start Date", "End Date", "Approval"]);
+			drawTable("SELECT * FROM trips", $database, ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"]);
 			}
 		}
  ?>
