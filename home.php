@@ -8,10 +8,24 @@
 <div class="container-fluid">
 <p>If you see this you are logged in</p>
 <?php
-/*	$results = $database -> query("SELECT firstName FROM users WHERE email=$_SESSION[email]");
-	$row = $results -> fetch_assoc(); */
-	echo("<h2>Welcome back, $_SESSION[firstName]</h2>");
+	echo("<h2>Welcome back, $_SESSION[firstName].</h2>");
 ?>
+<h3>Here's what's going on:</h3>
+<h4>Your Trips</h4>
+<?php
+	$results = getQuery("SELECT * FROM userPermissions WHERE userNo=$_SESSION[userNo]", $database=$database);
+	while($row = $results -> fetch_assoc()) {
+		if($row['userPermissions'] == 0 || $row['permissionNo'] == 2) {
+			$trips = getQuery("SELECT * FROM trips");
+			while($rowTrips = $trips -> fetch_assoc()) {
+				echo("<p>$rowTrips[tripName]</p>");
+				echo("<p>$rowTrips[description]</p>");
+			}
+		}
+	}
+ ?>
+<h4>Awaiting Approval</h4>
+<h4>New Comments</h4>
 </div>
 </body>
 </html>

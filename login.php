@@ -15,6 +15,7 @@
 				$_SESSION['LoggedIn'] = TRUE;
 				$_SESSION['email'] = $_POST['email'];
 				$_SESSION['firstName'] = $row['firstName'];
+				$_SESSION['userNo'] = $row['userNo'];
 				header('Location: home.php');
 			}
 		}

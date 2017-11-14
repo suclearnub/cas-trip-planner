@@ -64,6 +64,10 @@
     }
   }
 
+  function getQuery($sql, $database) {
+    return $database -> query($sql);
+  }
+
   function securePage() {
     # Checks if the user is logged in. If not they will be redirected to another page
     startSession();
