@@ -76,4 +76,25 @@
     }
   }
 
+  function drawTable($sql, $database, $colNames) {
+    $results = getQuery($sql, $database);
+    echo("<table class='table'>\r\n");
+    echo("<thead>\r\n");
+    echo("<tr>\r\n");
+    foreach($colNames as $col) {
+      echo("<th>$col</th>\r\n");
+    }
+    echo("</thead>\r\n");
+    echo("<tbody>\r\n");
+    while($row = $results -> fetch_assoc()) {
+      echo("<tr>\r\n");
+      foreach($row as $rowElement) {
+        echo("<td>$rowElement</td>\r\n");
+      }
+      echo("</tr>\r\n");
+    }
+    echo("</tbody\r\n");
+    echo("</table>\r\n");
+  }
+
  ?>
