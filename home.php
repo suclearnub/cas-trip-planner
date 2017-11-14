@@ -14,7 +14,7 @@
 <h4>Your Trips</h4>
 <?php
 	$results = getQuery("SELECT * FROM userPermissions WHERE userNo=$_SESSION[userNo]", $database);
-	echo("SELECT * FROM userPermissions WHERE userNo=$_SESSION[userNo]");
+	echo($_SESSION['userNo']);
 	while($row = $results -> fetch_assoc()) {
 		if($row['userPermissions'] == 0 || $row['permissionNo'] == 2) {
 			$trips = getQuery("SELECT * FROM trips", $database);
