@@ -21,7 +21,6 @@
 			drawTable("SELECT * FROM trips", $database, ["Name", "Description", "Start Date", "End Date", "Approval"]);
 			}
 		}
-	}
  ?>
 <h4>Awaiting Approval</h4>
 <h4>New Comments</h4>
