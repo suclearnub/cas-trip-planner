@@ -6,7 +6,7 @@
     die('Connection failed: ' . $database -> connect_error);
   }
 
-  $sql = "SELECT email, password, firstName FROM users";
+  $sql = "SELECT * FROM users";
   $results = $database -> query($sql);
 
 	if($results -> num_rows > 0) {
