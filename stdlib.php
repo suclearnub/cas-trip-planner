@@ -94,7 +94,7 @@
       }
       echo("</tr>\r\n");
     }
-    echo("</tbody\r\n");
+    echo("</tbody>\r\n");
     echo("</table>\r\n");
   }
 
