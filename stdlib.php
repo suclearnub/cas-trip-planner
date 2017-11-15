@@ -87,7 +87,7 @@
     }
     echo("</tr>");
     echo("</thead>\r\n");
-    echo("<tbody>\r\n");
+    echo("<tbody data-link='row' class='rowlink'>\r\n");
     while($row = $results -> fetch_assoc()) {
       echo("<tr>\r\n");
       echo("<td><a href='#$postTo.php?$postVarName=$row[$postTargetName]'></a></td>\r\n");
