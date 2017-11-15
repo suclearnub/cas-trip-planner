@@ -90,7 +90,7 @@
     echo("<tbody>\r\n");
     while($row = $results -> fetch_assoc()) {
       echo("<tr>\r\n");
-      echo("<td><a href='#$postTo.php?$postVarName=$row[$postTargetName]'");
+      echo("<td><a href='#$postTo.php?$postVarName=$row[$postTargetName]'></a></td>\r\n");
       foreach($row as $rowElement) {
         echo("<td>$rowElement</td>\r\n");
       }
