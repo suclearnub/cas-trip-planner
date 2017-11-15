@@ -10,6 +10,7 @@
           <link rel='stylesheet' href='$styleSheetName'>\r\n
      	    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>\r\n
      	    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>\r\n
+          <script src='//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js'></script>\r\n
           </head>\r\n
           <body>\r\n");
 
@@ -76,7 +77,7 @@
     }
   }
 
-  function drawTable($sql, $database, $colNames) {
+  function drawTable($sql, $database, $colNames, $postTo, $postTargetName, $postVarName) {
     $results = getQuery($sql, $database);
     echo("<table class='table'>\r\n");
     echo("<thead>\r\n");
@@ -89,6 +90,7 @@
     echo("<tbody>\r\n");
     while($row = $results -> fetch_assoc()) {
       echo("<tr>\r\n");
+      echo("<td><a href='#$postTo.php?$postVarName=$row[$postTargetName]'");
       foreach($row as $rowElement) {
         echo("<td>$rowElement</td>\r\n");
       }

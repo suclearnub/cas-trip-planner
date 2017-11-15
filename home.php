@@ -6,7 +6,6 @@
 	drawNavBar($currentPage='Home', $database);
 ?>
 <div class="container-fluid">
-<p>If you see this you are logged in</p>
 <?php
 	echo("<h2>Welcome back, $_SESSION[firstName].</h2>");
 ?>
@@ -17,11 +16,11 @@
 	while($row = $results -> fetch_assoc()) {
 		if($row['userPermissions'] == 0 || $row['permissionNo'] == 2) {
 			# If they have unlimited power or permission no. 2 (view_other_trips), list all the trips
-			drawTable("SELECT * FROM trips", $database, ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"]);
+			drawTable("SELECT * FROM trips", $database, ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"], "trips", "tripNo", "id");
 			}
 		else {
 			# Else, show all trips they are in.
-			drawTable("SELECT * from trips t join tripParticipants p on t.tripNo = p.tripNo WHERE p.userNo = 1", $database,  ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"]);
+			drawTable("SELECT * from trips t join tripParticipants p on t.tripNo = p.tripNo WHERE p.userNo = 1", $database,  ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"], "trips", "tripNo", "id");
 		}
 		}
  ?>
@@ -31,12 +30,12 @@
 		while($row = $results -> fetch_assoc()) {
 			if($row['userPermissions'] == 0 || $row['permissionNo'] == 4) {
 				# If they have unlimited power or permission no. 4 (modify_other_trips), list all the trips that haven't been confirmed
-				drawTable("SELECT * FROM trips WHERE confirmed = 0", $database, ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"]);
+				drawTable("SELECT * FROM trips WHERE confirmed = 0", $database, ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"], "trips", "tripNo", "id");
 			}
 			if ($row['userPermissions'] == 3) {
 				# Else, check if they have permission to modify_own_trips
 				# If they do, the have permission to edit all trips they are in
-				drawTable("SELECT * from trips t join tripParticipants p on t.tripNo = p.tripNo WHERE p.userNo = 1", $database,  ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"]);
+				drawTable("SELECT * from trips t join tripParticipants p on t.tripNo = p.tripNo WHERE p.userNo = 1", $database,  ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"], "trips", "tripNo", "id");
 			}
 			else {
 				# They are powerless to modify Trips
