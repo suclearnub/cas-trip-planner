@@ -84,6 +84,7 @@
     foreach($colNames as $col) {
       echo("<th>$col</th>\r\n");
     }
+    echo("</tr>");
     echo("</thead>\r\n");
     echo("<tbody>\r\n");
     while($row = $results -> fetch_assoc()) {
