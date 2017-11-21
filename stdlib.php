@@ -8,6 +8,7 @@
     	    <meta name='viewport' content='width=device-width, initial-scale=1'>\r\n
      	    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>\r\n
           <link rel='stylesheet' href='$styleSheetName'>\r\n
+          <link rel='stylesheet' href='master.css'>\r\n
      	    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>\r\n
      	    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>\r\n
           <script src='//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js'></script>\r\n
@@ -91,10 +92,9 @@
     while($row = $results -> fetch_assoc()) {
       echo("<tr>\r\n");
       $i = 0;
-      // echo("<td><a href='#$postTo.php?$postVarName=$row[$postTargetName]'></a></td>\r\n");
       foreach($row as $rowElement) {
         if($i==0) {
-          echo("<td><a href='$postTo.php?$postVarName=$row[$postTargetName]'>$rowElement</a></td>\r\n");
+          echo("<td><a href='$postTo.php?$postVarName=$row[$postTargetName]' class='lookNormal'>$rowElement</a></td>\r\n");
           }
         else {
           echo("<td>$rowElement</td>\r\n");
