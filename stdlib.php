@@ -90,9 +90,16 @@
     echo("<tbody data-link='row' class='rowlink'>\r\n");
     while($row = $results -> fetch_assoc()) {
       echo("<tr>\r\n");
+      $i = 0;
       // echo("<td><a href='#$postTo.php?$postVarName=$row[$postTargetName]'></a></td>\r\n");
       foreach($row as $rowElement) {
-        echo("<td><a href='#$postTo.php?$postVarName=$row[$postTargetName]'>$rowElement</a></td>\r\n");
+        if($i==0) {
+          echo("<td><a href='$postTo.php?$postVarName=$row[$postTargetName]'>$rowElement</a></td>\r\n");
+          }
+        else {
+          echo("<td>$rowElement</td>\r\n");
+          }
+        $i++;
       }
       echo("</tr>\r\n");
     }
