@@ -79,7 +79,7 @@
 
   function drawTable($sql, $database, $colNames, $postTo, $postTargetName, $postVarName) {
     $results = getQuery($sql, $database);
-    echo("<table class='table'>\r\n");
+    echo("<table class='table table-striped table-bordered table-hover'>\r\n");
     echo("<thead>\r\n");
     echo("<tr>\r\n");
     foreach($colNames as $col) {
