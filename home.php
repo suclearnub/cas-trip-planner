@@ -20,7 +20,7 @@
 			}
 		else {
 			# Else, show all trips they are in.
-			drawTable("SELECT * from trips t join tripParticipants p on t.tripNo = p.tripNo WHERE p.userNo = 1", $database,  ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"], "trips", "tripNo", "id");
+			drawTable("SELECT * from trips t join tripParticipants p on t.tripNo = p.tripNo WHERE p.userNo = $_SESSION[userNo]", $database,  ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"], "trips", "tripNo", "id");
 		}
 		}
  ?>
@@ -35,7 +35,7 @@
 			if ($row['userPermissions'] == 3) {
 				# Else, check if they have permission to modify_own_trips
 				# If they do, the have permission to edit all trips they are in
-				drawTable("SELECT * from trips t join tripParticipants p on t.tripNo = p.tripNo WHERE p.userNo = 1", $database,  ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"], "trips", "tripNo", "id");
+				drawTable("SELECT * from trips t join tripParticipants p on t.tripNo = p.tripNo WHERE p.userNo = $_SESSION[userNo] AND t.confirmed = 0", $database,  ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"], "trips", "tripNo", "id");
 			}
 			else {
 				# They are powerless to modify Trips

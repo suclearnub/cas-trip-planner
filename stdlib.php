@@ -54,6 +54,27 @@
     return $database;
   }
 
+  function checkPermission($database, $action) {
+    # This function can be used to check if a user has permissions to perform a specific task.
+    $permissions = getQuery("SELECT * FROM userPermissions WHERE userNo=$_SESSION[userNo]", $database);
+    while($row = $permissions -> fetch_assoc()) {
+      if($row['permissionNo'] == $action) {
+        return True;
+      }
+    }
+    return False;
+  }
+
+  function inTrip($database, $tripNo) {
+    $trips = getQuery("SELECT * from trips t join tripParticipants p on t.tripNo = p.tripNo WHERE p.userNo = $_SESSION[userNo]", $database);
+    while($row = $trips -> fetch_assoc()) {
+      if($row['t.tripNo'] == $tripNo) {
+        return True;
+      }
+    }
+    return False;
+  }
+
 
   function startSession() {
     # Starts new session and inits variables
