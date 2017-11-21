@@ -46,5 +46,8 @@
 <h4>New Comments</h4>
 	<p>To be implemented.</p>
 </div>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jasny-bootstrap.min.js"></script>
 </body>
 </html>
