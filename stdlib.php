@@ -99,7 +99,7 @@
     }
   }
 
-  function drawTable($sql, $database, $colNames, $postTo, $postTargetName, $postVarName) {
+  function drawTable($sql, $database, $colNames, $getTo, $getTargetName, $getVarName) {
     $results = getQuery($sql, $database);
     echo("<table class='table table-striped table-bordered table-hover'>\r\n");
     echo("<thead>\r\n");
@@ -115,7 +115,7 @@
       $i = 0;
       foreach($row as $rowElement) {
         if($i==0) {
-          echo("<td><a href='$postTo.php?$postVarName=$row[$postTargetName]' class='lookNormal'>$rowElement</a></td>\r\n");
+          echo("<td><a href='$getTo.php?$getVarName=$row[$getTargetName]' class='lookNormal'>$rowElement</a></td>\r\n");
           }
         else {
           echo("<td>$rowElement</td>\r\n");
