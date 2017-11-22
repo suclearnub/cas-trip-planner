@@ -118,6 +118,9 @@
           # If the row element's value is 0, it should be shown to the user as a 'No'.
           $rowElement = 'No';
         }
+        if ($rowElement) {
+          $rowElement = 'Yes';
+        }
         if ($i == 0) {
           echo("<td><a href='$getTo.php?$getVarName=$row[$getTargetName]' class='lookNormal'>$rowElement</a></td>\r\n");
         } else {
