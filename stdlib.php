@@ -114,13 +114,16 @@
       echo("<tr>\r\n");
       $i = 0;
       foreach($row as $rowElement) {
-        if($i==0) {
-          echo("<td><a href='$getTo.php?$getVarName=$row[$getTargetName]' class='lookNormal'>$rowElement</a></td>\r\n");
+        if ($rowElement == 0) {
+          # If the row element is 0, it's a No.
+          $rowElement = 'No';
+          if ($i == 0) {
+            echo("<td><a href='$getTo.php?$getVarName=$row[$getTargetName]' class='lookNormal'>$rowElement</a></td>\r\n");
+          } else {
+            echo("<td>$rowElement</td>\r\n");
           }
-        else {
-          echo("<td>$rowElement</td>\r\n");
-          }
-        $i++;
+          $i++;
+        }
       }
       echo("</tr>\r\n");
     }
