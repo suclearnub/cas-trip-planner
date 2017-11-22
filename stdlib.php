@@ -117,11 +117,11 @@
         if ($rowElement == 0) {
           # If the row element is 0, it's a No.
           $rowElement = 'No';
-          if ($i == 0) {
-            echo("<td><a href='$getTo.php?$getVarName=$row[$getTargetName]' class='lookNormal'>$rowElement</a></td>\r\n");
-          } else {
-            echo("<td>$rowElement</td>\r\n");
-          }
+        }
+        if ($i == 0) {
+          echo("<td><a href='$getTo.php?$getVarName=$row[$getTargetName]' class='lookNormal'>$rowElement</a></td>\r\n");
+        } else {
+          echo("<td>$rowElement</td>\r\n");
         }
         $i++;
       }
