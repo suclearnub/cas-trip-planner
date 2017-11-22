@@ -118,7 +118,7 @@
           # If the row element's value is 0, it should be shown to the user as a 'No'.
           $rowElement = 'No';
         }
-        if ($rowElement) {
+        if ($rowElement == True) {
           $rowElement = 'Yes';
         }
         if ($i == 0) {

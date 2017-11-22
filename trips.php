@@ -11,7 +11,7 @@ if (checkPermission($database, 0) || checkPermission($database, 2) || checkPermi
   echo("<h4>Confirmed Activities</h4>");
   drawTable("SELECT tripActivityNo, description, cost, confirmed, startDate, endDate FROM tripActivities WHERE tripNo = $_GET[id] AND confirmed = True", $database, ["Activity ID", "Description", "Cost", "Confirmation", "Start Date", "End Date"], "activity", "tripActivityNo", "id");
   echo("<br>");
-  echo("<h4>Activities Pending Approval");
+  echo("<h4>Activities Pending Approval</h4>");
   drawTable("SELECT tripActivityNo, description, cost, confirmed, startDate, endDate FROM tripActivities WHERE tripNo = $_GET[id] AND confirmed = False", $database, ["Activity ID", "Description", "Cost", "Confirmation", "Start Date", "End Date"], "activity", "tripActivityNo", "id");
 
 }
