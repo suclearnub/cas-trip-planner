@@ -122,8 +122,8 @@
           } else {
             echo("<td>$rowElement</td>\r\n");
           }
-          $i++;
         }
+        $i++;
       }
       echo("</tr>\r\n");
     }
