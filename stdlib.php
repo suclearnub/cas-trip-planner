@@ -114,7 +114,7 @@
       echo("<tr>\r\n");
       $i = 0;
       foreach($row as $rowElement) {
-        if ($rowElement === 0) {
+        if (!$rowElement) {
           # If the row element's value is 0, it should be shown to the user as a 'No'.
           $rowElement = 'No';
         }
