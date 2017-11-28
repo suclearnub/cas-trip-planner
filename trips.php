@@ -9,10 +9,10 @@ if (checkPermission($database, 0) || checkPermission($database, 2) || checkPermi
   echo("<div class='container-fluid'>");
   echo("<h2>Activities</h2>");
   echo("<h4>Confirmed Activities</h4>");
-  drawTable("SELECT tripActivityNo, description, cost, confirmed, startDate, endDate FROM tripActivities WHERE tripNo = $_GET[id] AND confirmed = True", $database, ["Activity ID", "Description", "Cost", "Confirmation", "Start Date", "End Date"], "activity", "tripActivityNo", "id");
+  drawTable("SELECT tripActivityNo, description, cost, CASE WHEN confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed, startDate, endDate FROM tripActivities WHERE tripNo = $_GET[id] AND confirmed = True", $database, ["Activity ID", "Description", "Cost", "Confirmation", "Start Date", "End Date"], "activity", "tripActivityNo", "id");
   echo("<br>");
   echo("<h4>Activities Pending Approval</h4>");
-  drawTable("SELECT tripActivityNo, description, cost, confirmed, startDate, endDate FROM tripActivities WHERE tripNo = $_GET[id] AND confirmed = False", $database, ["Activity ID", "Description", "Cost", "Confirmation", "Start Date", "End Date"], "activity", "tripActivityNo", "id");
+  drawTable("SELECT tripActivityNo, description, cost, CASE WHEN confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed, startDate, endDate FROM tripActivities WHERE tripNo = $_GET[id] AND confirmed = False", $database, ["Activity ID", "Description", "Cost", "Confirmation", "Start Date", "End Date"], "activity", "tripActivityNo", "id");
 
 }
 else {
