@@ -151,7 +151,7 @@
           echo("<td>$dataSubElement</td>\r\n");
         }
       } else {
-        echo($dataElement);
+        echo("<td>$dataElement</td>");
       }
       echo("</tr>\r\n");
     }
