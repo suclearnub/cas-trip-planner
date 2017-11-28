@@ -54,9 +54,9 @@
     return $database;
   }
 
-  function checkPermission($database, $action) {
+  function checkPermission($database, $action, $userNo) {
     # This function can be used to check if a user has permissions to perform a specific task.
-    $permissions = getQuery("SELECT * FROM userPermissions WHERE userNo=$_SESSION[userNo]", $database);
+    $permissions = getQuery("SELECT * FROM userPermissions WHERE userNo=$userNo", $database);
     while($row = $permissions -> fetch_assoc()) {
       if($row['permissionNo'] == $action) {
         return True;
@@ -65,8 +65,8 @@
     return False;
   }
 
-  function inTrip($database, $tripNo) {
-    $trips = getQuery("SELECT * from trips t join tripParticipants p on t.tripNo = p.tripNo WHERE p.userNo = $_SESSION[userNo]", $database);
+  function inTrip($database, $tripNo, $userNo) {
+    $trips = getQuery("SELECT * from trips t join tripParticipants p on t.tripNo = p.tripNo WHERE p.userNo = $userNo", $database);
     while($row = $trips -> fetch_assoc()) {
       if($row['t.tripNo'] == $tripNo) {
         return True;
@@ -98,6 +98,67 @@
       header('Location: index.php');
     }
   }
+
+  function getTripName($tripNo, $database) {
+    $results = getQuery("SELECT tripName FROM trips WHERE tripNo = $tripNo",$database);
+    while($row = $results -> fetch_assoc()) {
+      return $row['tripName'];
+    }
+    return NULL;
+  }
+
+  function getConfirmation($no, $table, $database) {
+    if($table == 'trips') {
+      $noTable = 'tripNo';
+    }
+    if($table == 'tripActivities') {
+      $noTable = 'tripActivities';
+    }
+    $results = getQuery("SELECT CASE WHEN confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed FROM $table WHERE $noTable = $no", $database);
+    while($row = $results -> fetch_assoc()) {
+      return $row['confirmed'];
+      }
+    return NULL;
+  }
+
+  function getParticipants($tripNo, $database) {
+    # Takes a trip number and returns an array of participants
+    $participantsList = array();
+    $results = getQuery("SELECT userNo FROM trips t JOIN tripParticipants p ON t.$tripNo = p.$tripNo", $database);
+    while($row = $results -> fetch_assoc()) {
+      foreach($row as $rowElement) {
+        $participantsList[] = $rowElement;
+      }
+    }
+    return $participantsList;
+  }
+
+  function drawNonSQLTable($data, $colNames){
+    # Draws a nice table without all that tedious mucking about in SQL.
+    echo("<table class='table table-striped table-bordered table-hover fixedWidth'>\r\n");
+    echo("<thead>\r\n");
+    echo("<tr>\r\n");
+    foreach($colNames as $col) {
+      echo("<th>$col</th>\r\n");
+    }
+    echo("</tr>");
+    echo("</thead>\r\n");
+    echo("<tbody data-link='row' class='rowlink'>\r\n");
+    foreach($data as $dataElement) {
+      echo("<tr>\r\n");
+      if (sizeof($dataElement) > 1) {
+        foreach ($dataElement as $dataSubElement) {
+          echo("<td>$dataSubElement</td>\r\n");
+        }
+      } else {
+        echo($dataElement);
+      }
+      echo("</tr>\r\n");
+    }
+    echo("</tbody>\r\n");
+    echo("</table>\r\n");
+  }
+
 
   function drawTable($sql, $database, $colNames, $getTo, $getTargetName, $getVarName) {
     $results = getQuery($sql, $database);
