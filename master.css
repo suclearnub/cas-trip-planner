@@ -2,3 +2,8 @@ a, a:hover, a:visited, a:active .lookNormal {
     text-decoration: none;
     color: inherit;
 }
+
+table .fixedWidth {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
