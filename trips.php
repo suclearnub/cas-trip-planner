@@ -10,7 +10,7 @@ if (checkPermission($database, 0, $_SESSION['userNo']) || checkPermission($datab
   $tripName = getTripName($_GET['id'], $database);
   echo("<h1>$tripName</h1>");
   echo("<h2>Overview:</h2>");
-  drawNonSQLTable([sizeof(getParticipants($_GET['id'], $database)), 'Cost Placeholder', getConfirmation($_GET['id'], 'trips', $database)], ['Participants', 'Cost', 'Confirmation']);
+  drawNonSQLTable([[sizeof(getParticipants($_GET['id'], $database)), 'Cost Placeholder', getConfirmation($_GET['id'], 'trips', $database)]], ['Participants', 'Cost', 'Confirmation']);
   echo("<h2>Activities</h2>");
   echo("<h4>Confirmed Activities</h4>");
   drawTable("SELECT tripActivityNo, description, cost, CASE WHEN confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed, startDate, endDate FROM tripActivities WHERE tripNo = $_GET[id] AND confirmed = True", $database, ["Activity ID", "Description", "Cost", "Confirmation", "Start Date", "End Date"], "activity", "tripActivityNo", "id");
