@@ -124,7 +124,7 @@
   function getParticipants($tripNo, $database) {
     # Takes a trip number and returns an array of participants
     $participantsList = array();
-    $results = getQuery("SELECT userNo FROM trips t JOIN tripParticipants p ON t.$tripNo = p.$tripNo", $database);
+    $results = getQuery("SELECT userNo FROM tripParticipants WHERE tripNo = $tripNo", $database);
     while($row = $results -> fetch_assoc()) {
       foreach($row as $rowElement) {
         $participantsList[] = $rowElement;
