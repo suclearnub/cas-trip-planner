@@ -55,11 +55,11 @@
   }
 
   function checkPermission($database, $action, $userNo) {
-    # This function can be used to check if a user has permissions to perform a specific task.
-    $permissions = getQuery("SELECT * FROM userPermissions WHERE userNo=$userNo", $database);
-    while($row = $permissions -> fetch_assoc()) {
-      if($row['permissionNo'] == $action) {
-        return True;
+    # This function can be used to check if a user has any one of the permissions in argument $action
+    foreach($action as $a) {
+      $permissions = getQuery("SELECT * FROM userPermissions WHERE userNo=$userNo", $database);
+      while($row = $permissions -> fetch_assoc()) {
+        if($row['permissionNo'] == $a) { return True; }
       }
     }
     return False;
