@@ -9,6 +9,7 @@
      	    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>\r\n
           <link rel='stylesheet' href='$styleSheetName'>\r\n
           <link rel='stylesheet' href='master.css'>\r\n
+          <link rel='stylesheet' href='comments.css'>\r\n
      	    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>\r\n
      	    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>\r\n
           <script src='//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js'></script>\r\n
@@ -186,6 +187,24 @@
     }
     echo("</tbody>\r\n");
     echo("</table>\r\n");
+  }
+
+  function drawComments($id, $table, $database) {
+    if($table == 'trips') { $tableComments = 'tripComments'; $noComments = 'tripNo'; }
+    if($table == 'activities') { $tableComments = 'tripActivityComments'; $noComments = 'tripActivityNo'; }
+    $results = getQuery("SELECT t.userNo, CONCAT(firstName, ' ', lastName) AS name, postDate, message FROM $tableComments t JOIN users u WHERE t.userNo = u.userNo AND t.$noComments = $id", $database);
+    while($row = $results -> fetch_assoc()) {
+      echo("<div class=\"container\">
+            <div class=\"panel panel-default\">
+            <div class=\"panel-heading\">
+            <strong><a href='profile.php?id=$row[userNo]'>$row[firstName]</a></strong> <span class=\"text-muted\">commented on $row[postDate]</span>
+            </div>
+            <div class=\"panel-body\">
+            $row[message]
+            </div>
+            </div>
+            </div>");
+    }
   }
 
  ?>

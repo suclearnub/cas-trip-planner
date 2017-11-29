@@ -36,7 +36,10 @@ if (checkPermission($database, [0, 2, 4], $_SESSION['userNo']) || inTrip($databa
   echo("<h4>Rejected</h4>");
   drawTable("SELECT tripActivityNo, description, cost, CASE WHEN confirmed = 1 THEN 'Yes' WHEN confirmed = 2 THEN 'Rejected' ELSE 'No' END AS confirmed, startDate, endDate FROM tripActivities WHERE tripNo = $_GET[id] AND confirmed = 2", $database, ["Activity ID", "Description", "Cost", "Confirmation", "Start Date", "End Date"], "activity", "tripActivityNo", "id");
 
+  echo("<br><br>");
 
+  echo("<h2>Comments</h2>");
+  drawComments($_GET['id'], 'trips', $database);
 }
 else {
   # Else, they're either don't have the power to see everything or they're not in the trip
