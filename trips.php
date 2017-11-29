@@ -19,6 +19,9 @@ if (checkPermission($database, 0, $_SESSION['userNo']) || checkPermission($datab
   if(checkPermission($database, 0, $_SESSION['userNo']) || checkPermission($database, 7, $_SESSION['userNo']) || checkPermission($database, 8, $_SESSION['userNo'])) {
       drawTable("SELECT t.userNo, CONCAT(u.firstName, ' ', u.lastName) AS name, CASE WHEN confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed, CASE WHEN passportOK = 1 THEN 'Yes' ELSE 'No' END AS passportOK, CASE WHEN visaOK = 1 THEN 'Yes' ELSE 'No' END AS visaOK, CASE WHEN paid = 1 THEN 'Yes' ELSE 'No' END AS paid FROM tripParticipants t JOIN users u ON t.userNo = u.userNo WHERE t.tripNo = 1
 ", $database, ['User ID', 'Name', 'Confirmed', 'Passport OK?', 'Visa OK?', 'Paid?'], 'profile', 'userNo', 'id');
+  } else {
+    drawTable("SELECT t.userNo, CONCAT(u.firstName, ' ', u.lastName) AS name FROM tripParticipants t JOIN users u ON t.userNo = u.userNo WHERE t.tripNo = 1
+", $database, ['User ID', 'Name'], 'profile', 'userNo', 'id');
   }
 
   echo("<br><br>");
