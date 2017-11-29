@@ -12,6 +12,9 @@
           <link rel='stylesheet' href='comments.css'>\r\n
      	    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>\r\n
      	    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>\r\n
+     	    <script src='http://code.jquery.com/jquery-2.0.3.min.js\'></script>\r\n
+     	    <link href='//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css\' rel=\"stylesheet\"/>\r\n
+     	    <script src='//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js\'></script>\r\n
           <script src='//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js'></script>\r\n
           </head>\r\n
           <body>\r\n");
