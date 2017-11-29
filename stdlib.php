@@ -166,7 +166,7 @@
     echo("<thead>\r\n");
     echo("<tr>\r\n");
     foreach($colNames as $col) {
-      echo("<th>$col</th>\r\n");
+      echo("<th class='col-lg-3'>$col</th>\r\n");
     }
     echo("</tr>");
     echo("</thead>\r\n");
