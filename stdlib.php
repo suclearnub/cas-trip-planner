@@ -208,7 +208,7 @@
 
   function drawCommentsBox($id, $table) {
     # Source: https://bootsnipp.com/snippets/featured/comment-box
-    $currentURL = $_SERVER['REQUEST_URI'] . '?id=' . $id;
+    $currentURL = $_SERVER['REQUEST_URI'];
     echo("<div class=\"container\">
           <div class=\"row\">
                       <div class=\"widget-area no-padding blank\">
