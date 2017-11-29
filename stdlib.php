@@ -194,14 +194,12 @@
     if($table == 'activities') { $tableComments = 'tripActivityComments'; $noComments = 'tripActivityNo'; }
     $results = getQuery("SELECT t.userNo, CONCAT(firstName, ' ', lastName) AS name, postDate, message FROM $tableComments t JOIN users u WHERE t.userNo = u.userNo AND t.$noComments = $id", $database);
     while($row = $results -> fetch_assoc()) {
-      echo("<div class=\"container\">
-            <div class=\"panel panel-default\">
+      echo("<div class=\"panel panel-default\">
             <div class=\"panel-heading\">
-            <strong><a href='profile.php?id=$row[userNo]'>$row[firstName]</a></strong> <span class=\"text-muted\">commented on $row[postDate]</span>
+            <strong><a href='profile.php?id=$row[userNo]'>$row[name]</a></strong> <span class=\"text-muted\">commented on $row[postDate]:</span>
             </div>
             <div class=\"panel-body\">
             $row[message]
-            </div>
             </div>
             </div>");
     }
