@@ -193,7 +193,7 @@
     # Source: https://bootsnipp.com/snippets/featured/user-comment-example
     if($table == 'trips') { $tableComments = 'tripComments'; $noComments = 'tripNo'; }
     if($table == 'activities') { $tableComments = 'tripActivityComments'; $noComments = 'tripActivityNo'; }
-    $results = getQuery("SELECT t.userNo, CONCAT(firstName, ' ', lastName) AS name, postDate, message FROM $tableComments t JOIN users u WHERE t.userNo = u.userNo AND t.$noComments = $id", $database);
+    $results = getQuery("SELECT t.userNo, CONCAT(firstName, ' ', lastName) AS name, postDate, message FROM $tableComments t JOIN users u WHERE t.userNo = u.userNo AND t.$noComments = $id ORDER BY t.postDate ASC", $database);
     while($row = $results -> fetch_assoc()) {
       echo("<div class=\"panel panel-default\">
             <div class=\"panel-heading\">
@@ -228,10 +228,10 @@
 
   function insertComments($id, $table, $database, $message, $returnURL) {
     if($table == 'trips') {
-      $results = getQuery("INSERT INTO tripComments (tripNo, userNo, postDate, message) VALUES ($id, $_SESSION[userNo], NOW(), $message)", $database);
+      getQuery("INSERT INTO tripComments (tripNo, userNo, postDate, message) VALUES ($id, $_SESSION[userNo], CURRENT_TIMESTAMP, '$message')", $database);
     }
     if($table == 'activities') {
-      $results = getQuery("INSERT INTO tripActivityComments (tripActivityNo, userNo, postDate, message) VALUES ($id, $_SESSION[userNo], NOW(), $message)", $database);
+      getQuery("INSERT INTO tripActivityComments (tripActivityNo, userNo, postDate, message) VALUES ($id, $_SESSION[userNo], CURRENT_TIMESTAMP, '$message')", $database);
     }
   }
 
