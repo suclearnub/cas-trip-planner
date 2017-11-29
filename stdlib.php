@@ -190,6 +190,7 @@
   }
 
   function drawComments($id, $table, $database) {
+    # Source: https://bootsnipp.com/snippets/featured/user-comment-example
     if($table == 'trips') { $tableComments = 'tripComments'; $noComments = 'tripNo'; }
     if($table == 'activities') { $tableComments = 'tripActivityComments'; $noComments = 'tripActivityNo'; }
     $results = getQuery("SELECT t.userNo, CONCAT(firstName, ' ', lastName) AS name, postDate, message FROM $tableComments t JOIN users u WHERE t.userNo = u.userNo AND t.$noComments = $id", $database);
@@ -202,6 +203,35 @@
             $row[message]
             </div>
             </div>");
+    }
+  }
+
+  function drawCommentsBox($id, $table) {
+    # Source: https://bootsnipp.com/snippets/featured/comment-box
+    $currentURL = $_SERVER['REQUEST_URI'] . '?id=' . $id;
+    echo("<div class=\"container\">
+          <div class=\"row\">
+                      <div class=\"widget-area no-padding blank\">
+                      <div class=\"status-upload\">
+                        <form action='comment.php' method='post'>
+                          <input type='hidden' name='returnURL' value='$currentURL'>
+                          <input type='hidden' name='id' value='$id'>
+                          <input type='hidden' name='table' value='$table'>
+                          <textarea name='message' placeholder=\"Say something...\" ></textarea>
+                          <button type=\"submit\" class=\"btn btn-success green\"><i class=\"fa fa-share\"></i>Post</button>
+                        </form>
+                      </div>
+                    </div>
+          </div>
+      </div>");
+  }
+
+  function insertComments($id, $table, $database, $message, $returnURL) {
+    if($table == 'trips') {
+      $results = getQuery("INSERT INTO tripComments (tripNo, userNo, postDate, message) VALUES ($id, $_SESSION[userNo], NOW(), $message)", $database);
+    }
+    if($table == 'activities') {
+      $results = getQuery("INSERT INTO tripActivityComments (tripActivityNo, userNo, postDate, message) VALUES ($id, $_SESSION[userNo], NOW(), $message)", $database);
     }
   }
 

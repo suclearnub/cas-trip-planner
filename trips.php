@@ -40,6 +40,8 @@ if (checkPermission($database, [0, 2, 4], $_SESSION['userNo']) || inTrip($databa
 
   echo("<h2>Comments</h2>");
   drawComments($_GET['id'], 'trips', $database);
+  drawCommentsBox($_GET['id'], 'trips');
+
 }
 else {
   # Else, they're either don't have the power to see everything or they're not in the trip
