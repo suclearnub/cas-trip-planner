@@ -165,7 +165,7 @@
   }
 
 
-  function drawTable($sql, $database, $colNames, $getTo, $getTargetName, $getVarName) {
+  function drawTable($sql, $database, $colNames, $getTo, $getTargetName, $getVarName, $jsNames) {
     $results = getQuery($sql, $database);
     echo("<table class='table table-striped table-bordered table-hover fixedWidth'>\r\n");
     echo("<thead>\r\n");
@@ -181,9 +181,9 @@
       $i = 0;
       foreach($row as $rowElement) {
         if ($i == 0) {
-          echo("<td><a href='$getTo.php?$getVarName=$row[$getTargetName]' class='lookNormal'>$rowElement</a></td>\r\n");
+          echo("<td><a href='$getTo.php?$getVarName=$row[$getTargetName]' class='lookNormal' id='$jsNames[i]'>$rowElement</a></td>\r\n");
         } else {
-          echo("<td>$rowElement</td>\r\n");
+          echo("<td><a id='$jsNames[i]'>$rowElement</td>\r\n");
         }
         $i++;
       }

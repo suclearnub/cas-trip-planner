@@ -84,7 +84,7 @@ $(document).ready(function() {
         type: 'combodate',
         template: 'YYYY MM DD HH:mm',
         format: 'YYYY-MM-DD HH:mm',
-        viewformat: 'YYYY, MM, DD, HH:mm',
+        viewformat: 'YYYY-MM-DD HH:mm',
         placement: 'top'
         ,pk: window.location.search.substr(-1)
         ,name: 'startDate'
@@ -94,7 +94,7 @@ $(document).ready(function() {
         type: 'combodate',
         template: 'YYYY MM DD HH:mm',
         format: 'YYYY-MM-DD HH:mm',
-        viewformat: 'YYYY, MM, DD, HH:mm',
+        viewformat: 'YYYY-MM-DD HH:mm',
         placement: 'top'
         ,pk: window.location.search.substr(-1)
         ,name: 'endDate'
