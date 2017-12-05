@@ -180,11 +180,13 @@
     while($row = $results -> fetch_assoc()) {
       echo("<tr>\r\n");
       $i = 0;
+      $columns = array_keys($row);
       foreach($row as $rowElement) {
         if ($i == 0) {
-          echo("<td><a href='$getTo.php?$getVarName=$row[$getTargetName]' class='lookNormal' id='$jsNames[$i]'>$rowElement</a></td>\r\n");
+          $pKey = $rowElement;
+          echo("<td><a href='$getTo.php?$getVarName=$row[$getTargetName]' class='lookNormal'>$rowElement</a></td>\r\n");
         } else {
-          echo("<td><a id='$jsNames[$i]'>$rowElement</a></td>\r\n");
+          echo("<td class='rowlink-skip'><a id='$jsNames[$i]' data-pk='$pKey' data-name='$columns[$i]'>$rowElement</a></td>\r\n");
         }
         $i++;
       }
