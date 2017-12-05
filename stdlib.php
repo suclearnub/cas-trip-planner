@@ -183,7 +183,7 @@
         if ($i == 0) {
           echo("<td><a href='$getTo.php?$getVarName=$row[$getTargetName]' class='lookNormal' id='$jsNames[$i]'>$rowElement</a></td>\r\n");
         } else {
-          echo("<td><a id='$jsNames[$i]'>$rowElement</td>\r\n");
+          echo("<td><a id='$jsNames[$i]'>$rowElement</a></td>\r\n");
         }
         $i++;
       }
