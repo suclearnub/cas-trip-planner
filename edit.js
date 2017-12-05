@@ -11,7 +11,7 @@ $(document).ready(function() {
             {value: 0, text: 'No'},
             {value: 1, text: 'Yes'}
         ]
-        ,pk: window.location.search.substr(1)
+        ,pk: window.location.search.substr(-1)
         ,name: 'confirmation'
     });
 
@@ -23,7 +23,7 @@ $(document).ready(function() {
             {value: 0, text: 'No'},
             {value: 1, text: 'Yes'}
         ]
-        ,pk: window.location.search.substr(1)
+        ,pk: window.location.search.substr(-1)
         ,name: 'passportOK'
     });
 
@@ -35,7 +35,7 @@ $(document).ready(function() {
             {value: 0, text: 'No'},
             {value: 1, text: 'Yes'}
         ]
-        ,pk: window.location.search.substr(1)
+        ,pk: window.location.search.substr(-1)
         ,name: 'passportOK'
     });
 
@@ -47,7 +47,7 @@ $(document).ready(function() {
             {value: 0, text: 'No'},
             {value: 1, text: 'Yes'}
         ]
-        ,pk: window.location.search.substr(1)
+        ,pk: window.location.search.substr(-1)
         ,name: 'paid'
     });
 
@@ -60,7 +60,7 @@ $(document).ready(function() {
             {value: 1, text: 'Yes'},
             {value: 2, text: 'Rejected'}
         ]
-        ,pk: window.location.search.substr(1)
+        ,pk: window.location.search.substr(-1)
         ,name: 'confirmation'
     });
 
@@ -68,7 +68,7 @@ $(document).ready(function() {
         type: 'text',
         clear: true,
         placement: 'top'
-        ,pk: window.location.search.substr(1)
+        ,pk: window.location.search.substr(-1)
         ,name: 'description'
     });
 
@@ -76,8 +76,27 @@ $(document).ready(function() {
         type: 'text',
         clear: true,
         placement: 'top'
-        ,pk: window.location.search.substr(1)
+        ,pk: window.location.search.substr(-1)
         ,name: 'cost'
     });
 
+    $('#startDate').editable({
+        type: 'combodate',
+        template: 'YYYY MM DD HH:mm',
+        format: 'YYYY-MM-DD HH:mm',
+        viewformat: 'YYYY, MM, DD, HH:mm',
+        placement: 'top'
+        ,pk: window.location.search.substr(-1)
+        ,name: 'cost'
+    });
+
+    $('#endDate').editable({
+        type: 'combodate',
+        template: 'YYYY MM DD HH:mm',
+        format: 'YYYY-MM-DD HH:mm',
+        viewformat: 'YYYY, MM, DD, HH:mm',
+        placement: 'top'
+        ,pk: window.location.search.substr(-1)
+        ,name: 'cost'
+    });
 });

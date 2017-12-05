@@ -16,6 +16,7 @@
      	    <link href='//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css\' rel=\"stylesheet\"/>\r\n
      	    <script src='//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js\'></script>\r\n
           <script src='//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js'></script>\r\n
+          <script src='js/moment.min.js'></script>\r\n
           </head>\r\n
           <body>\r\n");
 
