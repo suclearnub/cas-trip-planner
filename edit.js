@@ -87,7 +87,7 @@ $(document).ready(function() {
         viewformat: 'YYYY, MM, DD, HH:mm',
         placement: 'top'
         ,pk: window.location.search.substr(-1)
-        ,name: 'cost'
+        ,name: 'startDate'
     });
 
     $('#endDate').editable({
@@ -97,6 +97,6 @@ $(document).ready(function() {
         viewformat: 'YYYY, MM, DD, HH:mm',
         placement: 'top'
         ,pk: window.location.search.substr(-1)
-        ,name: 'cost'
+        ,name: 'endDate'
     });
 });
