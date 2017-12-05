@@ -186,7 +186,7 @@
           $pKey = $rowElement;
           echo("<td><a href='$getTo.php?$getVarName=$row[$getTargetName]' class='lookNormal'>$rowElement</a></td>\r\n");
         } else {
-          echo("<td class='rowlink-skip'><a id='$jsNames[$i]' data-pk='$pKey' data-name='$columns[$i]'>$rowElement</a></td>\r\n");
+          echo("<td class='rowlink-skip'><span class='$jsNames[$i]'><a data-pk='$pKey' data-name='$columns[$i]'>$rowElement</a></span></td>\r\n");
         }
         $i++;
       }

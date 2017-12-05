@@ -3,7 +3,7 @@ $(document).ready(function() {
     $.fn.editable.defaults.mode = 'inline';
 
     // overview-confirmation is the confirmation column for the overview section
-    $('#confirmation').editable({
+    $('#confirmation a').editable({
         type: 'select',
         title: 'Select status',
         placement: 'top',
@@ -15,7 +15,7 @@ $(document).ready(function() {
         ,name: 'confirmation'
     });
 
-    $('#passportOK').editable({
+    $('#passportOK a').editable({
         type: 'select',
         title: 'Select status',
         placement: 'top',
@@ -27,7 +27,7 @@ $(document).ready(function() {
         ,name: 'passportOK'
     });
 
-    $('#visaOK').editable({
+    $('#visaOK a').editable({
         type: 'select',
         title: 'Select status',
         placement: 'top',
@@ -39,7 +39,7 @@ $(document).ready(function() {
         ,name: 'passportOK'
     });
 
-    $('#paid').editable({
+    $('#paid a').editable({
         type: 'select',
         title: 'Select status',
         placement: 'top',
@@ -51,7 +51,7 @@ $(document).ready(function() {
         ,name: 'paid'
     });
 
-    $('#activity-confirmation').editable({
+    $('#activity-confirmation a').editable({
         type: 'select',
         title: 'Select status',
         placement: 'top',
@@ -64,7 +64,7 @@ $(document).ready(function() {
         ,name: 'confirmation'
     });
 
-    $('#description').editable({
+    $('#description a').editable({
         type: 'text',
         clear: true,
         placement: 'top'
@@ -72,7 +72,7 @@ $(document).ready(function() {
         ,name: 'description'
     });
 
-    $('#cost').editable({
+    $('#cost a').editable({
         type: 'text',
         clear: true,
         placement: 'top'
@@ -80,7 +80,7 @@ $(document).ready(function() {
         ,name: 'cost'
     });
 
-    $('#startDate').editable({
+    $('#startDate a').editable({
         type: 'combodate',
         template: 'YYYY MM DD HH:mm',
         format: 'YYYY-MM-DD HH:mm',
@@ -90,7 +90,7 @@ $(document).ready(function() {
         ,name: 'startDate'
     });
 
-    $('#endDate').editable({
+    $('#endDate a').editable({
         type: 'combodate',
         template: 'YYYY MM DD HH:mm',
         format: 'YYYY-MM-DD HH:mm',
