@@ -166,8 +166,9 @@
   }
 
 
-  function drawTable($sql, $database, $colNames, $getTo, $getTargetName, $getVarName, $jsNames, $editable) {
+  function drawTable($sql, $database, $colNames, $getTo, $getTargetName, $getVarName, $jsNames, $editable, $tableTarget) {
     $results = getQuery($sql, $database);
+    $tableTarget = $tableTarget . "_";
     echo("<table class='table table-striped table-bordered table-hover fixedWidth'>\r\n");
     echo("<thead>\r\n");
     echo("<tr>\r\n");
@@ -186,7 +187,7 @@
           $pKey = $rowElement;
           echo("<td><a href='$getTo.php?$getVarName=$row[$getTargetName]' class='lookNormal'>$rowElement</a></td>\r\n");
         } else {
-          if ($editable == TRUE) { echo("<td class='rowlink-skip'><span id='$jsNames[$i]'><a data-pk='$pKey' data-name='$columns[$i]'>$rowElement</a></span></td>\r\n"); }
+          if ($editable == TRUE) { echo("<td class='rowlink-skip'><span id='$tableTarget . $jsNames[$i]'><a data-pk='$pKey' data-name='$columns[$i]'>$rowElement</a></span></td>\r\n"); }
           else { echo("<td>$rowElement</td>\r\n"); }
         }
         $i++;

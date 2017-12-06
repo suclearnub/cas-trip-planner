@@ -1,9 +1,13 @@
 $(document).ready(function() {
+
+    function getID() {
+        return window.location.search.substr(-1);
+    }
     //toggle `popup` / `inline` mode
     $.fn.editable.defaults.mode = 'inline';
 
     // overview-confirmation is the confirmation column for the overview section
-    $('#confirmation a').editable({
+    $('#tripParticipants_confirmation a').editable({
         type: 'select',
         title: 'Select status',
         placement: 'top',
@@ -11,11 +15,12 @@ $(document).ready(function() {
             {value: 0, text: 'No'},
             {value: 1, text: 'Yes'}
         ]
-        ,pk: window.location.search.substr(-1)
+        
         ,name: 'confirmation'
+        ,url: 'edit.php?table=tripParticipants&k=' + window.location.search.substr(-1)
     });
 
-    $('#passportOK a').editable({
+    $('#tripParticipants_passportOK a').editable({
         type: 'select',
         title: 'Select status',
         placement: 'top',
@@ -23,11 +28,12 @@ $(document).ready(function() {
             {value: 0, text: 'No'},
             {value: 1, text: 'Yes'}
         ]
-        ,pk: window.location.search.substr(-1)
+        
         ,name: 'passportOK'
+        ,url: 'edit.php?table=tripParticipants&k=' + window.location.search.substr(-1)
     });
 
-    $('#visaOK a').editable({
+    $('#tripParticipants_visaOK a').editable({
         type: 'select',
         title: 'Select status',
         placement: 'top',
@@ -35,11 +41,12 @@ $(document).ready(function() {
             {value: 0, text: 'No'},
             {value: 1, text: 'Yes'}
         ]
-        ,pk: window.location.search.substr(-1)
+        
         ,name: 'passportOK'
+        ,url: 'edit.php?table=tripParticipants&k=' + window.location.search.substr(-1)
     });
 
-    $('#paid a').editable({
+    $('#tripParticipants_paid a').editable({
         type: 'select',
         title: 'Select status',
         placement: 'top',
@@ -47,11 +54,12 @@ $(document).ready(function() {
             {value: 0, text: 'No'},
             {value: 1, text: 'Yes'}
         ]
-        ,pk: window.location.search.substr(-1)
+        
         ,name: 'paid'
+        ,url: 'edit.php?table=tripParticipants&k=' + window.location.search.substr(-1)
     });
 
-    $('#activity-confirmation a').editable({
+    $('#activities_confirmation a').editable({
         type: 'select',
         title: 'Select status',
         placement: 'top',
@@ -60,43 +68,48 @@ $(document).ready(function() {
             {value: 1, text: 'Yes'},
             {value: 2, text: 'Rejected'}
         ]
-        ,pk: window.location.search.substr(-1)
+        
         ,name: 'confirmation'
+        ,url: 'edit.php?table=tripActivities&k=' + window.location.search.substr(-1)
     });
 
-    $('#description a').editable({
+    $('#activities_description a').editable({
         type: 'text',
         clear: true,
         placement: 'top'
-        ,pk: window.location.search.substr(-1)
+        
         ,name: 'description'
+        ,url: 'edit.php'
     });
 
-    $('#cost a').editable({
+    $('#activities_cost a').editable({
         type: 'text',
         clear: true,
         placement: 'top'
-        ,pk: window.location.search.substr(-1)
+        
         ,name: 'cost'
+        ,url: 'edit.php'
     });
 
-    $('#startDate a').editable({
+    $('#activities_startDate a').editable({
         type: 'combodate',
         template: 'YYYY MM DD HH:mm',
         format: 'YYYY-MM-DD HH:mm',
         viewformat: 'YYYY-MM-DD HH:mm',
         placement: 'top'
-        ,pk: window.location.search.substr(-1)
+        
         ,name: 'startDate'
+        ,url: 'edit.php'
     });
 
-    $('#endDate a').editable({
+    $('#activities_endDate a').editable({
         type: 'combodate',
         template: 'YYYY MM DD HH:mm',
         format: 'YYYY-MM-DD HH:mm',
         viewformat: 'YYYY-MM-DD HH:mm',
         placement: 'top'
-        ,pk: window.location.search.substr(-1)
+        
         ,name: 'endDate'
+        ,url: 'edit.php'
     });
 });
