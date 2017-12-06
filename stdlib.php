@@ -183,11 +183,12 @@
       $i = 0;
       $columns = array_keys($row);
       foreach($row as $rowElement) {
+        $combined = $tableTarget . $jsNames[$i];
         if ($i == 0) {
           $pKey = $rowElement;
           echo("<td><a href='$getTo.php?$getVarName=$row[$getTargetName]' class='lookNormal'>$rowElement</a></td>\r\n");
         } else {
-          if ($editable == TRUE) { echo("<td class='rowlink-skip'><span id='$tableTarget . $jsNames[$i]'><a data-pk='$pKey' data-name='$columns[$i]'>$rowElement</a></span></td>\r\n"); }
+          if ($editable == TRUE) { echo("<td class='rowlink-skip'><span id='$combined'><a data-pk='$pKey' data-name='$columns[$i]'>$rowElement</a></span></td>\r\n"); }
           else { echo("<td>$rowElement</td>\r\n"); }
         }
         $i++;
