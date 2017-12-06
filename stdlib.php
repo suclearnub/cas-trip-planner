@@ -15,7 +15,7 @@
         <script src='http://code.jquery.com/jquery-2.0.3.min.js'></script>\r\n
         <link href='//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css' rel='stylesheet'/>\r\n
         <script src='//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js'></script>\r\n
-        <script src='//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js'></script>\r\n
+        <script src ='//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js'></script>\r\n
         <script src='js/moment.min.js'></script>\r\n
         <script src='edit.js'></script>\r\n
         </head>\r\n
@@ -166,7 +166,7 @@
   }
 
 
-  function drawTable($sql, $database, $colNames, $getTo, $getTargetName, $getVarName, $jsNames) {
+  function drawTable($sql, $database, $colNames, $getTo, $getTargetName, $getVarName, $jsNames, $editable) {
     $results = getQuery($sql, $database);
     echo("<table class='table table-striped table-bordered table-hover fixedWidth'>\r\n");
     echo("<thead>\r\n");
@@ -186,7 +186,8 @@
           $pKey = $rowElement;
           echo("<td><a href='$getTo.php?$getVarName=$row[$getTargetName]' class='lookNormal'>$rowElement</a></td>\r\n");
         } else {
-          echo("<td class='rowlink-skip'><span id='$jsNames[$i]'><a data-pk='$pKey' data-name='$columns[$i]'>$rowElement</a></span></td>\r\n");
+          if ($editable == TRUE) { echo("<td class='rowlink-skip'><span id='$jsNames[$i]'><a data-pk='$pKey' data-name='$columns[$i]'>$rowElement</a></span></td>\r\n"); }
+          else { echo("<td>$rowElement</td>\r\n"); }
         }
         $i++;
       }
