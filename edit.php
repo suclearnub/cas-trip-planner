@@ -7,9 +7,21 @@ $pk = $_POST['pk'];
 $name = $_POST['name'];
 $value = $_POST['value'];
 
-if(!empty($value)) {
-  $results = getQuery("UPDATE ")
+$table = $_GET['table'];
+$pkName = $_GET['pkName'];
+$id = $_GET['id'];
+$kName = $_GET['kName'];
 
+if($kName == NULL && $id == NULL) { $alternateUpdate = TRUE; }
+else { $alternateUpdate = FALSE; }
+
+if(!empty($value)) {
+  if ($alternateUpdate) {
+    $results = getQuery("UPDATE $table SET ($name = $value) WHERE $pkName = $pk AND $kName = $id", $database);
+  }
+  else {
+    $results = getQuery("UPDATE $table SET $name = $value WHERE $pkName = $pk", $database);
+  }
 
 } else {
   /*

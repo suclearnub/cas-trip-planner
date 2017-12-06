@@ -17,7 +17,7 @@ $(document).ready(function() {
         ]
         
         ,name: 'confirmation'
-        ,url: 'edit.php?table=tripParticipants&k=' + window.location.search.substr(-1)
+        ,url: 'edit.php?table=tripParticipants&pkName=userNo&id=' + window.location.search.substr(-1) + '&kName=tripNo'
     });
 
     $('#tripParticipants_passportOK a').editable({
@@ -30,7 +30,7 @@ $(document).ready(function() {
         ]
         
         ,name: 'passportOK'
-        ,url: 'edit.php?table=tripParticipants&k=' + window.location.search.substr(-1)
+        ,url: 'edit.php?table=tripParticipants&pkName=userNo&id=' + window.location.search.substr(-1) + '&kName=tripNo'
     });
 
     $('#tripParticipants_visaOK a').editable({
@@ -43,7 +43,7 @@ $(document).ready(function() {
         ]
         
         ,name: 'passportOK'
-        ,url: 'edit.php?table=tripParticipants&k=' + window.location.search.substr(-1)
+        ,url: 'edit.php?table=tripParticipants&pkName=userNo&id=' + window.location.search.substr(-1) + '&kName=tripNo'
     });
 
     $('#tripParticipants_paid a').editable({
@@ -56,10 +56,10 @@ $(document).ready(function() {
         ]
         
         ,name: 'paid'
-        ,url: 'edit.php?table=tripParticipants&k=' + window.location.search.substr(-1)
+        ,url: 'edit.php?table=tripParticipants&pkName=userNo&id=' + window.location.search.substr(-1) + '&kName=tripNo'
     });
 
-    $('#activities_confirmation a').editable({
+    $('#tripActivities_confirmation a').editable({
         type: 'select',
         title: 'Select status',
         placement: 'top',
@@ -70,28 +70,28 @@ $(document).ready(function() {
         ]
         
         ,name: 'confirmation'
-        ,url: 'edit.php?table=tripActivities&k=' + window.location.search.substr(-1)
+        ,url: 'edit.php?table=tripParticipants&pkName=userNo&id=' + window.location.search.substr(-1) + '&kName=tripNo'
     });
 
-    $('#activities_description a').editable({
+    $('#tripActivities_description a').editable({
         type: 'text',
         clear: true,
         placement: 'top'
         
         ,name: 'description'
-        ,url: 'edit.php'
+        ,url: 'edit.php?table=activities?pkName=tripActivitiesNo'
     });
 
-    $('#activities_cost a').editable({
+    $('#tripActivities_cost a').editable({
         type: 'text',
         clear: true,
         placement: 'top'
         
         ,name: 'cost'
-        ,url: 'edit.php'
+        ,url: 'edit.php?table=activities?pkName=tripActivitiesNo'
     });
 
-    $('#activities_startDate a').editable({
+    $('#tripActivities_startDate a').editable({
         type: 'combodate',
         template: 'YYYY MM DD HH:mm',
         format: 'YYYY-MM-DD HH:mm',
@@ -99,10 +99,10 @@ $(document).ready(function() {
         placement: 'top'
         
         ,name: 'startDate'
-        ,url: 'edit.php'
+        ,url: 'edit.php?table=activities?pkName=tripActivitiesNo'
     });
 
-    $('#activities_endDate a').editable({
+    $('#tripActivities_endDate a').editable({
         type: 'combodate',
         template: 'YYYY MM DD HH:mm',
         format: 'YYYY-MM-DD HH:mm',
@@ -110,6 +110,6 @@ $(document).ready(function() {
         placement: 'top'
         
         ,name: 'endDate'
-        ,url: 'edit.php'
+        ,url: 'edit.php?table=activities?pkName=tripActivitiesNo'
     });
 });
