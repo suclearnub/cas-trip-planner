@@ -3,17 +3,18 @@ require_once('stdlib.php');
 securePage();
 $database = databaseConnect();
 
-$pk = $_POST['pk'];
-$name = $_POST['name'];
-$value = $_POST['value'];
+$pk = $_POST['pk']; # Value of primary key
+$name = $_POST['name']; # Name of column to update
+$value = $_POST['value']; # Value to update
 
-$table = $_GET['table'];
-$pkName = $_GET['pkName'];
-$id = $_GET['id'];
-$kName = $_GET['kName'];
+$table = $_GET['table']; # Table name
+$pkName = $_GET['pkName']; # Name of primary key column
+$id = $_GET['id']; # Value of id to check against if there can be multiple entries (for tables such as users)
+$kName = $_GET['kName']; # Name of column to check against if there can be multiple entries
 
-if($kName == NULL && $id == NULL) { $alternateUpdate = TRUE; }
-else { $alternateUpdate = FALSE; }
+# alternateUpdate is set to TRUE if the table has multiple entries and therefore needs another check.
+if($kName == NULL && $id == NULL) { $alternateUpdate = FALSE; }
+else { $alternateUpdate = TRUE; }
 
 if(!empty($value)) {
   if ($alternateUpdate) {
