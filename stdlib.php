@@ -12,13 +12,14 @@
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
         <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
         
+        <script src='js/moment.min.js'></script>
+        
         <link rel='stylesheet' href='$styleSheetName'>
         <link rel='stylesheet' href='master.css'>
         <link rel='stylesheet' href='comments.css'>
         
         <link href='//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css' rel='stylesheet'/>
         <script src='//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js'></script>
-        <script src='js/moment.min.js'></script>
         
         <script src ='//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js'></script>
         <script src='edit.js'></script>
