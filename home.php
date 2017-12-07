@@ -30,12 +30,12 @@
 		while($row = $results -> fetch_assoc()) {
 			if($row['userPermissions'] == 0 || $row['permissionNo'] == 4) {
 				# If they have unlimited power or permission no. 4 (modify_other_trips), list all the trips that haven't been confirmed
-				drawTable("SELECT tripNo, tripName, description, startDate, endDate, CASE WHEN confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed FROM trips WHERE confirmed = 0", $database, ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"], "trips", "tripNo", "id", ['noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable'], FALSE);
+				drawTable("SELECT tripNo, tripName, description, startDate, endDate, CASE WHEN confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed FROM trips WHERE confirmed = 0", $database, ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"], "trips", "tripNo", "id", ['noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable'], FALSE, 'noteditable');
 			}
 			if ($row['userPermissions'] == 3) {
 				# Else, check if they have permission to modify_own_trips
 				# If they do, the have permission to edit all trips they are in
-				drawTable("SELECT t.tripNo, t.tripName, t.description, t.startDate, t.endDate, CASE WHEN t.confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed FROM trips t JOIN tripParticipants p ON t.tripNo = p.tripNo WHERE p.userNo = $_SESSION[userNo] AND t.confirmed = 0", $database,  ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"], "trips", "tripNo", "id", ['noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable'], FALSE);
+				drawTable("SELECT t.tripNo, t.tripName, t.description, t.startDate, t.endDate, CASE WHEN t.confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed FROM trips t JOIN tripParticipants p ON t.tripNo = p.tripNo WHERE p.userNo = $_SESSION[userNo] AND t.confirmed = 0", $database,  ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"], "trips", "tripNo", "id", ['noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable'], FALSE, 'noteditable');
 			}
 			else {
 				# They are powerless to modify Trips

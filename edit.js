@@ -17,7 +17,8 @@ $(document).ready(function() {
         ]
         
         ,name: 'confirmation'
-        ,url: 'edit.php?table=tripParticipants&pkName=userNo&id=' + window.location.search.substr(-1) + '&kName=tripNo'
+        ,params: {'table': 'tripParticipants', 'pkName': 'userNo', 'id': window.location.search.substr(-1), 'kName': 'tripNo'}
+        ,url: 'edit.php'
     });
 
     $('#tripParticipants_passportOK a').editable({
@@ -30,7 +31,8 @@ $(document).ready(function() {
         ]
         
         ,name: 'passportOK'
-        ,url: 'edit.php?table=tripParticipants&pkName=userNo&id=' + window.location.search.substr(-1) + '&kName=tripNo'
+        ,params: {'table': 'tripParticipants', 'pkName': 'userNo', 'id': window.location.search.substr(-1), 'kName': 'tripNo'}
+        ,url: 'edit.php'
     });
 
     $('#tripParticipants_visaOK a').editable({
@@ -43,7 +45,8 @@ $(document).ready(function() {
         ]
         
         ,name: 'passportOK'
-        ,url: 'edit.php?table=tripParticipants&pkName=userNo&id=' + window.location.search.substr(-1) + '&kName=tripNo'
+        ,params: {'table': 'tripParticipants', 'pkName': 'userNo', 'id': window.location.search.substr(-1), 'kName': 'tripNo'}
+        ,url: 'edit.php'
     });
 
     $('#tripParticipants_paid a').editable({
@@ -56,7 +59,8 @@ $(document).ready(function() {
         ]
         
         ,name: 'paid'
-        ,url: 'edit.php?table=tripParticipants&pkName=userNo&id=' + window.location.search.substr(-1) + '&kName=tripNo'
+        ,params: {'table': 'tripParticipants', 'pkName': 'userNo', 'id': window.location.search.substr(-1), 'kName': 'tripNo'}
+        ,url: 'edit.php'
     });
 
     $('#tripActivities_confirmation a').editable({
@@ -70,7 +74,8 @@ $(document).ready(function() {
         ]
         
         ,name: 'confirmation'
-        ,url: 'edit.php?table=tripParticipants&pkName=userNo&id=' + window.location.search.substr(-1) + '&kName=tripNo'
+        ,params: {'table': 'tripParticipants', 'pkName': 'userNo', 'id': window.location.search.substr(-1), 'kName': 'tripNo'}
+        ,url: 'edit.php'
     });
 
     $('#tripActivities_description a').editable({
@@ -79,7 +84,8 @@ $(document).ready(function() {
         placement: 'top'
         
         ,name: 'description'
-        ,url: 'edit.php?table=activities?pkName=tripActivitiesNo'
+        ,params: {'table': 'activities', 'pkName': 'tripActivitiesNo'}
+        ,url: 'edit.php'
     });
 
     $('#tripActivities_cost a').editable({
@@ -88,7 +94,8 @@ $(document).ready(function() {
         placement: 'top'
         
         ,name: 'cost'
-        ,url: 'edit.php?table=activities?pkName=tripActivitiesNo'
+        ,params: {'table': 'activities', 'pkName': 'tripActivitiesNo'}
+        ,url: 'edit.php'
     });
 
     $('#tripActivities_startDate a').editable({
@@ -99,7 +106,8 @@ $(document).ready(function() {
         placement: 'top'
         
         ,name: 'startDate'
-        ,url: 'edit.php?table=activities?pkName=tripActivitiesNo'
+        ,params: {'table': 'activities', 'pkName': 'tripActivitiesNo'}
+        ,url: 'edit.php'
     });
 
     $('#tripActivities_endDate a').editable({
@@ -110,6 +118,7 @@ $(document).ready(function() {
         placement: 'top'
         
         ,name: 'endDate'
-        ,url: 'edit.php?table=activities?pkName=tripActivitiesNo'
+        ,params: {'table': 'activities', 'pkName': 'tripActivitiesNo'}
+        ,url: 'edit.php'
     });
 });

@@ -7,10 +7,10 @@ $pk = $_POST['pk']; # Value of primary key
 $name = $_POST['name']; # Name of column to update
 $value = $_POST['value']; # Value to update
 
-$table = $_GET['table']; # Table name
-$pkName = $_GET['pkName']; # Name of primary key column
-$id = $_GET['id']; # Value of id to check against if there can be multiple entries (for tables such as users)
-$kName = $_GET['kName']; # Name of column to check against if there can be multiple entries
+$table = $_POST['table']; # Table name
+$pkName = $_POST['pkName']; # Name of primary key column
+$id = $_POST['id']; # Value of id to check against if there can be multiple entries (for tables such as users)
+$kName = $_POST['kName']; # Name of column to check against if there can be multiple entries
 
 # alternateUpdate is set to TRUE if the table has multiple entries and therefore needs another check.
 if($kName == NULL && $id == NULL) { $alternateUpdate = FALSE; }
