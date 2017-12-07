@@ -1,30 +1,25 @@
 <?php
   function initPage($title, $styleSheetName) {
-    echo("<!DOCTYPE html>
-        <head>
-        <html lang='en'>
-        <title>$title</title>
-        <meta charset='utf-8'>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
-
-        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-        <script src='http://code.jquery.com/jquery-2.0.3.min.js'></script>
-        <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
-        <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
-        
-        <script src='js/moment.min.js'></script>
-        
-        <link rel='stylesheet' href='$styleSheetName'>
-        <link rel='stylesheet' href='master.css'>
-        <link rel='stylesheet' href='comments.css'>
-        
-        <link href='//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css' rel='stylesheet'/>
-        <script src='//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js'></script>
-        
-        <script src ='//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js'></script>
-        <script src='edit.js'></script>
-        </head>
-        <body>");
+    echo("<!DOCTYPE html>\r\n
+        <head>\r\n
+        <html lang='en'>\r\n
+        <title>$title</title>\r\n
+        <meta charset='utf-8'>\r\n
+        <meta name='viewport' content='width=device-width, initial-scale=1'>\r\n
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>\r\n
+        <link rel='stylesheet' href='$styleSheetName'>\r\n
+        <link rel='stylesheet' href='master.css'>\r\n
+        <link rel='stylesheet' href='comments.css'>\r\n
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>\r\n
+        <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>\r\n
+        <script src='http://code.jquery.com/jquery-2.0.3.min.js'></script>\r\n
+        <link href='//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css' rel='stylesheet'/>\r\n
+        <script src='//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js'></script>\r\n
+        <script src ='//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js'></script>\r\n
+        <script src='js/moment.min.js'></script>\r\n
+        <script src='edit.js'></script>\r\n
+        </head>\r\n
+        <body>\r\n");
 
   }
   function drawNavBar($currentPage, $database) {
