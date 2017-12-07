@@ -16,11 +16,11 @@
 	while($row = $results -> fetch_assoc()) {
 		if($row['userPermissions'] == 0 || $row['permissionNo'] == 2) {
 			# If they have unlimited power or permission no. 2 (view_other_trips), list all the trips
-			drawTable("SELECT tripNo, tripName, description, startDate, endDate, CASE WHEN confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed FROM trips", $database, ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"], "trips", "tripNo", "id", ['noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable'], FALSE);
+			drawTable("SELECT tripNo, tripName, description, startDate, endDate, CASE WHEN confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed FROM trips", $database, ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"], "trips", "tripNo", "id", ['noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable'], FALSE, 'noteditable');
 			}
 		else {
 			# Else, show all trips they are in.
-			drawTable("SELECT t.tripNo, t.tripName, t.description, t.startDate, t.endDate, CASE WHEN t.confirmed = 1 THEN 'YES' ELSE 'NO' END AS confirmed FROM trips t JOIN tripParticipants p ON t.tripNo = p.tripNo WHERE p.UserNo = $_SESSION[userNo]", $database,  ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"], "trips", "tripNo", "id", ['noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable'], FALSE);
+			drawTable("SELECT t.tripNo, t.tripName, t.description, t.startDate, t.endDate, CASE WHEN t.confirmed = 1 THEN 'YES' ELSE 'NO' END AS confirmed FROM trips t JOIN tripParticipants p ON t.tripNo = p.tripNo WHERE p.UserNo = $_SESSION[userNo]", $database,  ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"], "trips", "tripNo", "id", ['noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable'], FALSE, 'noteditable');
 		}
 		}
  ?>
