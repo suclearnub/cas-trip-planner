@@ -100,6 +100,7 @@ $(document).ready(function() {
 
     $('#tripActivities_startDate a').editable({
         type: 'combodate',
+        combodate: {maxYear: moment().year()+5},
         template: 'YYYY MM DD HH:mm',
         format: 'YYYY-MM-DD HH:mm',
         viewformat: 'YYYY-MM-DD HH:mm',
@@ -112,6 +113,7 @@ $(document).ready(function() {
 
     $('#tripActivities_endDate a').editable({
         type: 'combodate',
+        combodate: {maxYear: moment().year()+5},
         template: 'YYYY MM DD HH:mm',
         format: 'YYYY-MM-DD HH:mm',
         viewformat: 'YYYY-MM-DD HH:mm',
