@@ -84,7 +84,7 @@ $(document).ready(function() {
         placement: 'top'
         
         ,name: 'description'
-        ,params: {'table': 'activities', 'pkName': 'tripActivitiesNo'}
+        ,params: {'table': 'tripActivities', 'pkName': 'tripActivitiesNo'}
         ,url: 'edit.php'
     });
 
@@ -94,7 +94,7 @@ $(document).ready(function() {
         placement: 'top'
         
         ,name: 'cost'
-        ,params: {'table': 'activities', 'pkName': 'tripActivitiesNo'}
+        ,params: {'table': 'tripActivities', 'pkName': 'tripActivitiesNo'}
         ,url: 'edit.php'
     });
 
@@ -106,7 +106,7 @@ $(document).ready(function() {
         placement: 'top'
         
         ,name: 'startDate'
-        ,params: {'table': 'activities', 'pkName': 'tripActivitiesNo'}
+        ,params: {'table': 'tripActivities', 'pkName': 'tripActivitiesNo'}
         ,url: 'edit.php'
     });
 
@@ -118,7 +118,7 @@ $(document).ready(function() {
         placement: 'top'
         
         ,name: 'endDate'
-        ,params: {'table': 'activities', 'pkName': 'tripActivitiesNo'}
+        ,params: {'table': 'tripActivities', 'pkName': 'tripActivitiesNo'}
         ,url: 'edit.php'
     });
 });
