@@ -74,7 +74,7 @@ $(document).ready(function() {
         ]
         
         ,name: 'confirmation'
-        ,params: {'table': 'tripParticipants', 'pkName': 'userNo', 'id': window.location.search.substr(-1), 'kName': 'tripNo'}
+        ,params: {'table': 'tripActivities', 'pkName': 'tripActivitiesNo', 'id': window.location.search.substr(-1), 'kName': 'tripNo'}
         ,url: 'edit.php'
     });
 
