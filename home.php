@@ -16,7 +16,7 @@
 	while($row = $results -> fetch_assoc()) {
 		if($row['userPermissions'] == 0 || $row['permissionNo'] == 2) {
 			# If they have unlimited power or permission no. 2 (view_other_trips), list all the trips
-			drawTable("SELECT tripNo, tripName, description, startDate, endDate, CASE WHEN confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed FROM trips", $database, ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"], "trips", "tripNo", "id", ['noteditable', 'noteditable', 'noteditable', 'starDate', 'endDate', 'confirmation'], TRUE, 'trips');
+			drawTable("SELECT tripNo, tripName, description, startDate, endDate, CASE WHEN confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed FROM trips", $database, ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"], "trips", "tripNo", "id", ['noteditable', 'noteditable', 'noteditable', 'startDate', 'endDate', 'confirmation'], TRUE, 'trips');
 			}
 		else {
 			# Else, show all trips they are in.
