@@ -18,7 +18,7 @@ else { $alternateUpdate = TRUE; }
 
 if(!empty($value)) {
   if ($alternateUpdate) {
-    $results = getQuery("UPDATE $table SET ($name = $value) WHERE $pkName = $pk AND $kName = $id", $database);
+    $results = getQuery("UPDATE $table SET $name = $value WHERE $pkName = $pk AND $kName = $id", $database);
   }
   else {
     $results = getQuery("UPDATE $table SET $name = $value WHERE $pkName = $pk", $database);

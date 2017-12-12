@@ -68,8 +68,8 @@ $(document).ready(function() {
         title: 'Select status',
         placement: 'top',
         source: [
-            {value: 0, text: 'No'},
-            {value: 1, text: 'Yes'},
+            {value: 0, text: 'Pending'},
+            {value: 1, text: 'Accepted'},
             {value: 2, text: 'Rejected'}
         ]
         
