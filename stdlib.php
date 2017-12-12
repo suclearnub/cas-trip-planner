@@ -1,19 +1,24 @@
 <?php
   function initPage($title, $styleSheetName) {
     echo("<!DOCTYPE html>\r\n
-          <head>\r\n
-          <html lang='en'>\r\n
-    	    <title>$title</title>\r\n
-    	    <meta charset='utf-8'>\r\n
-    	    <meta name='viewport' content='width=device-width, initial-scale=1'>\r\n
-     	    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>\r\n
-          <link rel='stylesheet' href='$styleSheetName'>\r\n
-          <link rel='stylesheet' href='master.css'>\r\n
-     	    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>\r\n
-     	    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>\r\n
-          <script src='//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js'></script>\r\n
-          </head>\r\n
-          <body>\r\n");
+        <head>\r\n
+        <html lang='en'>\r\n
+        <title>$title</title>\r\n
+        <meta charset='utf-8'>\r\n
+        <meta name='viewport' content='width=device-width, initial-scale=1'>\r\n
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>\r\n
+        <link rel='stylesheet' href='$styleSheetName'>\r\n
+        <link rel='stylesheet' href='master.css'>\r\n
+        <link rel='stylesheet' href='comments.css'>\r\n
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>\r\n
+        <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>\r\n
+        <link href='//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css' rel='stylesheet'/>\r\n
+        <script src='//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js'></script>\r\n
+        <script src ='//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js'></script>\r\n
+        <script src='js/moment.min.js'></script>\r\n
+        <script src='edit.js'></script>\r\n
+        </head>\r\n
+        <body>\r\n");
 
   }
   function drawNavBar($currentPage, $database) {
@@ -54,19 +59,19 @@
     return $database;
   }
 
-  function checkPermission($database, $action) {
-    # This function can be used to check if a user has permissions to perform a specific task.
-    $permissions = getQuery("SELECT * FROM userPermissions WHERE userNo=$_SESSION[userNo]", $database);
-    while($row = $permissions -> fetch_assoc()) {
-      if($row['permissionNo'] == $action) {
-        return True;
+  function checkPermission($database, $action, $userNo) {
+    # This function can be used to check if a user has any one of the permissions in argument $action
+    foreach($action as $a) {
+      $permissions = getQuery("SELECT * FROM userPermissions WHERE userNo=$userNo", $database);
+      while($row = $permissions -> fetch_assoc()) {
+        if($row['permissionNo'] == $a) { return True; }
       }
     }
     return False;
   }
 
-  function inTrip($database, $tripNo) {
-    $trips = getQuery("SELECT * from trips t join tripParticipants p on t.tripNo = p.tripNo WHERE p.userNo = $_SESSION[userNo]", $database);
+  function inTrip($database, $tripNo, $userNo) {
+    $trips = getQuery("SELECT * from trips t join tripParticipants p on t.tripNo = p.tripNo WHERE p.userNo = $userNo", $database);
     while($row = $trips -> fetch_assoc()) {
       if($row['t.tripNo'] == $tripNo) {
         return True;
@@ -99,8 +104,42 @@
     }
   }
 
-  function drawTable($sql, $database, $colNames, $getTo, $getTargetName, $getVarName) {
-    $results = getQuery($sql, $database);
+  function getTripName($tripNo, $database) {
+    $results = getQuery("SELECT tripName FROM trips WHERE tripNo = $tripNo",$database);
+    while($row = $results -> fetch_assoc()) {
+      return $row['tripName'];
+    }
+    return NULL;
+  }
+
+  function getConfirmation($no, $table, $database) {
+    if($table == 'trips') {
+      $noTable = 'tripNo';
+    }
+    if($table == 'tripActivities') {
+      $noTable = 'tripActivities';
+    }
+    $results = getQuery("SELECT CASE WHEN confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed FROM $table WHERE $noTable = $no", $database);
+    while($row = $results -> fetch_assoc()) {
+      return $row['confirmed'];
+      }
+    return NULL;
+  }
+
+  function getParticipants($tripNo, $database) {
+    # Takes a trip number and returns an array of participants
+    $participantsList = array();
+    $results = getQuery("SELECT userNo FROM tripParticipants WHERE tripNo = $tripNo", $database);
+    while($row = $results -> fetch_assoc()) {
+      foreach($row as $rowElement) {
+        $participantsList[] = $rowElement;
+      }
+    }
+    return $participantsList;
+  }
+
+  function drawNonSQLTable($data, $colNames){
+    # Draws a nice table without all that tedious mucking about in SQL.
     echo("<table class='table table-striped table-bordered table-hover fixedWidth'>\r\n");
     echo("<thead>\r\n");
     echo("<tr>\r\n");
@@ -110,14 +149,46 @@
     echo("</tr>");
     echo("</thead>\r\n");
     echo("<tbody data-link='row' class='rowlink'>\r\n");
+    foreach($data as $dataElement) {
+      echo("<tr>\r\n");
+      if (sizeof($dataElement) > 1) {
+        foreach ($dataElement as $dataSubElement) {
+          echo("<td>$dataSubElement</td>\r\n");
+        }
+      } else {
+        echo("<td>$dataElement</td>");
+      }
+      echo("</tr>\r\n");
+    }
+    echo("</tbody>\r\n");
+    echo("</table>\r\n");
+  }
+
+
+  function drawTable($sql, $database, $colNames, $getTo, $getTargetName, $getVarName, $jsNames, $editable, $tableTarget) {
+    $results = getQuery($sql, $database);
+    $tableTarget = $tableTarget . "_";
+    echo("<table class='table table-striped table-bordered table-hover fixedWidth'>\r\n");
+    echo("<thead>\r\n");
+    echo("<tr>\r\n");
+    foreach($colNames as $col) {
+      echo("<th class='col-lg-3'>$col</th>\r\n");
+    }
+    echo("</tr>");
+    echo("</thead>\r\n");
+    echo("<tbody data-link='row' class='rowlink'>\r\n");
     while($row = $results -> fetch_assoc()) {
       echo("<tr>\r\n");
       $i = 0;
+      $columns = array_keys($row);
       foreach($row as $rowElement) {
+        $combined = $tableTarget . $jsNames[$i];
         if ($i == 0) {
+          $pKey = $rowElement;
           echo("<td><a href='$getTo.php?$getVarName=$row[$getTargetName]' class='lookNormal'>$rowElement</a></td>\r\n");
         } else {
-          echo("<td>$rowElement</td>\r\n");
+          if ($editable == TRUE) { echo("<td class='rowlink-skip'><span id='$combined'><a data-pk='$pKey' data-name='$columns[$i]'>$rowElement</a></span></td>\r\n"); }
+          else { echo("<td>$rowElement</td>\r\n"); }
         }
         $i++;
       }
@@ -125,6 +196,52 @@
     }
     echo("</tbody>\r\n");
     echo("</table>\r\n");
+  }
+
+  function drawComments($id, $table, $database) {
+    # Source: https://bootsnipp.com/snippets/featured/user-comment-example
+    if($table == 'trips') { $tableComments = 'tripComments'; $noComments = 'tripNo'; }
+    if($table == 'activities') { $tableComments = 'tripActivityComments'; $noComments = 'tripActivityNo'; }
+    $results = getQuery("SELECT t.userNo, CONCAT(firstName, ' ', lastName) AS name, postDate, message FROM $tableComments t JOIN users u WHERE t.userNo = u.userNo AND t.$noComments = $id ORDER BY t.postDate ASC", $database);
+    while($row = $results -> fetch_assoc()) {
+      echo("<div class=\"panel panel-default\">
+            <div class=\"panel-heading\">
+            <strong><a href='profile.php?id=$row[userNo]'>$row[name]</a></strong> <span class=\"text-muted\">commented on $row[postDate]:</span>
+            </div>
+            <div class=\"panel-body\">
+            $row[message]
+            </div>
+            </div>");
+    }
+  }
+
+  function drawCommentsBox($id, $table) {
+    # Source: https://bootsnipp.com/snippets/featured/comment-box
+    $currentURL = $_SERVER['REQUEST_URI'];
+    echo("<div class=\"container\">
+          <div class=\"row\">
+                      <div class=\"widget-area no-padding blank\">
+                      <div class=\"status-upload\">
+                        <form action='comment.php' method='post'>
+                          <input type='hidden' name='returnURL' value='$currentURL'>
+                          <input type='hidden' name='id' value='$id'>
+                          <input type='hidden' name='table' value='$table'>
+                          <textarea name='message' placeholder=\"Say something...\" ></textarea>
+                          <button type=\"submit\" class=\"btn btn-success green\"><i class=\"fa fa-share\"></i>Post</button>
+                        </form>
+                      </div>
+                    </div>
+          </div>
+      </div>");
+  }
+
+  function insertComments($id, $table, $database, $message, $returnURL) {
+    if($table == 'trips') {
+      getQuery("INSERT INTO tripComments (tripNo, userNo, postDate, message) VALUES ($id, $_SESSION[userNo], CURRENT_TIMESTAMP, '$message')", $database);
+    }
+    if($table == 'activities') {
+      getQuery("INSERT INTO tripActivityComments (tripActivityNo, userNo, postDate, message) VALUES ($id, $_SESSION[userNo], CURRENT_TIMESTAMP, '$message')", $database);
+    }
   }
 
  ?>
