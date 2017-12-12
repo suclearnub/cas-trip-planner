@@ -16,7 +16,7 @@
 	while($row = $results -> fetch_assoc()) {
 		if($row['userPermissions'] == 0 || $row['permissionNo'] == 2) {
 			# If they have unlimited power or permission no. 2 (view_other_trips), list all the trips
-			drawTable("SELECT tripNo, tripName, description, startDate, endDate, CASE WHEN confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed FROM trips", $database, ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"], "trips", "tripNo", "id", ['noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable'], FALSE, 'noteditable');
+			drawTable("SELECT tripNo, tripName, description, startDate, endDate, CASE WHEN confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed FROM trips", $database, ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"], "trips", "tripNo", "id", ['noteditable', 'noteditable', 'noteditable', 'starDate', 'endDate', 'confirmation'], TRUE, 'trips');
 			}
 		else {
 			# Else, show all trips they are in.
@@ -30,7 +30,7 @@
 		while($row = $results -> fetch_assoc()) {
 			if($row['userPermissions'] == 0 || $row['permissionNo'] == 4) {
 				# If they have unlimited power or permission no. 4 (modify_other_trips), list all the trips that haven't been confirmed
-				drawTable("SELECT tripNo, tripName, description, startDate, endDate, CASE WHEN confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed FROM trips WHERE confirmed = 0", $database, ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"], "trips", "tripNo", "id", ['noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable'], FALSE, 'noteditable');
+				drawTable("SELECT tripNo, tripName, description, startDate, endDate, CASE WHEN confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed FROM trips WHERE confirmed = 0", $database, ["Trip ID", "Name", "Description", "Start Date", "End Date", "Approval"], "trips", "tripNo", "id", ['noteditable', 'noteditable', 'noteditable', 'noteditable', 'starDate', 'endDate', 'confirmation'], FALSE, 'trips');
 			}
 			if ($row['userPermissions'] == 3) {
 				# Else, check if they have permission to modify_own_trips

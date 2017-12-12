@@ -101,9 +101,9 @@ $(document).ready(function() {
     $('#tripActivities_startDate a').editable({
         type: 'combodate',
         combodate: {maxYear: moment().year()+5},
-        template: 'YYYY MM DD HH:mm',
-        format: 'YYYY-MM-DD HH:mm',
-        viewformat: 'YYYY-MM-DD HH:mm',
+        template: 'YYYY MM DD HH:mm:ss',
+        format: 'YYYY-MM-DD HH:mm:ss',
+        viewformat: 'YYYY-MM-DD HH:mm:ss',
         placement: 'top'
         
         ,name: 'startDate'
@@ -114,13 +114,53 @@ $(document).ready(function() {
     $('#tripActivities_endDate a').editable({
         type: 'combodate',
         combodate: {maxYear: moment().year()+5},
-        template: 'YYYY MM DD HH:mm',
-        format: 'YYYY-MM-DD HH:mm',
-        viewformat: 'YYYY-MM-DD HH:mm',
+        template: 'YYYY MM DD HH:mm:ss',
+        format: 'YYYY-MM-DD HH:mm:ss',
+        viewformat: 'YYYY-MM-DD HH:mm:ss',
         placement: 'top'
-        
+
         ,name: 'endDate'
         ,params: {'table': 'tripActivities', 'pkName': 'tripActivitiesNo'}
+        ,url: 'edit.php'
+    });
+
+    $('#trips_startDate a').editable({
+        type: 'combodate',
+        combodate: {maxYear: moment().year()+5},
+        template: 'YYYY MM DD HH:mm:ss',
+        format: 'YYYY-MM-DD HH:mm:ss',
+        viewformat: 'YYYY-MM-DD HH:mm:ss',
+        placement: 'top'
+
+        ,name: 'startDate'
+        ,params: {'table': 'trips', 'pkName': 'tripNo'}
+        ,url: 'edit.php'
+    });
+
+    $('#trips_endDate a').editable({
+        type: 'combodate',
+        combodate: {maxYear: moment().year()+5},
+        template: 'YYYY MM DD HH:mm:ss',
+        format: 'YYYY-MM-DD HH:mm:ss',
+        viewformat: 'YYYY-MM-DD HH:mm:ss',
+        placement: 'top'
+
+        ,name: 'endDate'
+        ,params: {'table': 'trips', 'pkName': 'tripNo'}
+        ,url: 'edit.php'
+    });
+
+    $('#trips_confirmation a').editable({
+        type: 'select',
+        title: 'Select status',
+        placement: 'top',
+        source: [
+            {value: 0, text: 'No'},
+            {value: 1, text: 'Yes'}
+        ]
+
+        ,name: 'confirmation'
+        ,params: {'table': 'tripActivities', 'pkName': 'trip' }
         ,url: 'edit.php'
     });
 });
