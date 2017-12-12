@@ -16,7 +16,7 @@ $kName = $_POST['kName']; # Name of column to check against if there can be mult
 if($kName == NULL && $id == NULL) { $alternateUpdate = FALSE; }
 else { $alternateUpdate = TRUE; }
 
-if(!empty($value)) {
+if($value != NULL) {
   if ($alternateUpdate) {
     $results = getQuery("UPDATE $table SET $name = $value WHERE $pkName = $pk AND $kName = $id", $database);
   }
