@@ -1,20 +1,24 @@
 <?php
   function initPage($title, $styleSheetName) {
     echo("<!DOCTYPE html>\r\n
-          <head>\r\n
-          <html lang='en'>\r\n
-    	    <title>$title</title>\r\n
-    	    <meta charset='utf-8'>\r\n
-    	    <meta name='viewport' content='width=device-width, initial-scale=1'>\r\n
-     	    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>\r\n
-          <link rel='stylesheet' href='$styleSheetName'>\r\n
-          <link rel='stylesheet' href='master.css'>\r\n
-          <link rel='stylesheet' href='comments.css'>\r\n
-     	    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>\r\n
-     	    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>\r\n
-          <script src='//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js'></script>\r\n
-          </head>\r\n
-          <body>\r\n");
+        <head>\r\n
+        <html lang='en'>\r\n
+        <title>$title</title>\r\n
+        <meta charset='utf-8'>\r\n
+        <meta name='viewport' content='width=device-width, initial-scale=1'>\r\n
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>\r\n
+        <link rel='stylesheet' href='$styleSheetName'>\r\n
+        <link rel='stylesheet' href='master.css'>\r\n
+        <link rel='stylesheet' href='comments.css'>\r\n
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>\r\n
+        <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>\r\n
+        <link href='//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css' rel='stylesheet'/>\r\n
+        <script src='//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js'></script>\r\n
+        <script src ='//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js'></script>\r\n
+        <script src='js/moment.min.js'></script>\r\n
+        <script src='edit.js'></script>\r\n
+        </head>\r\n
+        <body>\r\n");
 
   }
   function drawNavBar($currentPage, $database) {
@@ -161,8 +165,9 @@
   }
 
 
-  function drawTable($sql, $database, $colNames, $getTo, $getTargetName, $getVarName) {
+  function drawTable($sql, $database, $colNames, $getTo, $getTargetName, $getVarName, $jsNames, $editable, $tableTarget) {
     $results = getQuery($sql, $database);
+    $tableTarget = $tableTarget . "_";
     echo("<table class='table table-striped table-bordered table-hover fixedWidth'>\r\n");
     echo("<thead>\r\n");
     echo("<tr>\r\n");
@@ -175,11 +180,15 @@
     while($row = $results -> fetch_assoc()) {
       echo("<tr>\r\n");
       $i = 0;
+      $columns = array_keys($row);
       foreach($row as $rowElement) {
+        $combined = $tableTarget . $jsNames[$i];
         if ($i == 0) {
+          $pKey = $rowElement;
           echo("<td><a href='$getTo.php?$getVarName=$row[$getTargetName]' class='lookNormal'>$rowElement</a></td>\r\n");
         } else {
-          echo("<td>$rowElement</td>\r\n");
+          if ($editable == TRUE) { echo("<td class='rowlink-skip'><span id='$combined'><a data-pk='$pKey' data-name='$columns[$i]'>$rowElement</a></span></td>\r\n"); }
+          else { echo("<td>$rowElement</td>\r\n"); }
         }
         $i++;
       }
