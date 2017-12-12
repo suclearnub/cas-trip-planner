@@ -4,7 +4,7 @@ $(document).ready(function() {
         return window.location.search.substr(-1);
     }
     //toggle `popup` / `inline` mode
-    $.fn.editable.defaults.mode = 'inline';
+    $.fn.editable.defaults.mode = 'popup';
 
     // overview-confirmation is the confirmation column for the overview section
     $('#tripParticipants_confirmation a').editable({
