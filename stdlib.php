@@ -240,21 +240,21 @@
   function drawCommentsBox($id, $table) {
     # Source: https://bootsnipp.com/snippets/featured/comment-box
     $currentURL = $_SERVER['REQUEST_URI'];
-    echo("<div class=\"container\">
-          <div class=\"row\">
-                      <div class=\"widget-area no-padding blank\">
-                      <div class=\"status-upload\">
-                        <form action='comment.php' method='post'>
-                          <input type='hidden' name='returnURL' value='$currentURL'>
-                          <input type='hidden' name='id' value='$id'>
-                          <input type='hidden' name='table' value='$table'>
-                          <textarea name='message' placeholder=\"Say something...\" ></textarea>
-                          <button type=\"submit\" class=\"btn btn-success green\"><i class=\"fa fa-share\"></i>Post</button>
-                        </form>
-                      </div>
-                    </div>
+    echo("<div class='container'>
+          <div class='row'>
+            <div class='widget-area no-padding blank'>
+            <div class='status-upload'>
+              <form action='comment.php' method='post'>
+                <input type='hidden' name='returnURL' value='$currentURL'>
+                <input type='hidden' name='id' value='$id'>
+                <input type='hidden' name='table' value='$table'>
+                <textarea name='message' placeholder=\"Say something...\" ></textarea>
+                <button type='submit' class='btn btn-success green'><i class='fa fa-share'></i>Post</button>
+              </form>
+            </div>
+            </div>
           </div>
-      </div>");
+          </div>");
   }
 
   function insertComments($id, $table, $database, $message, $returnURL) {
