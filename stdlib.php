@@ -104,6 +104,14 @@
     }
   }
 
+  function getActivityDesc($activityNo, $database) {
+    $results = getQuery("SELECT description FROM tripActivities WHERE tripActivitiesNo = $activityNo", $database);
+    while($row = $results -> fetch_assoc()) {
+      return $row['description'];
+    }
+    return NULL;
+  }
+
   function getTripName($tripNo, $database) {
     $results = getQuery("SELECT tripName FROM trips WHERE tripNo = $tripNo",$database);
     while($row = $results -> fetch_assoc()) {
@@ -136,6 +144,14 @@
       }
     }
     return $participantsList;
+  }
+
+  function getActivitiesParent($database, $activityNo) {
+    $parentTrip = getQuery("SELECT tripNo FROM tripActivities WHERE tripActivitiesNo = $activityNo", $database);
+    while($row = $parentTrip -> fetch_assoc()) {
+      return $row['tripNo'];
+    }
+    return NULL;
   }
 
   function drawNonSQLTable($data, $colNames){
