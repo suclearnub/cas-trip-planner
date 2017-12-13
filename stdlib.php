@@ -48,6 +48,12 @@
   }
 }
 
+  function ifEmptyRedir() {
+    if($_GET['id'] == NULL ) {
+      header('Location: home.php');
+    }
+  }
+
   function databaseConnect() {
     # Initiates a connection to the database
     $serverName = "mysql.cs.carmel.edu.hk";

@@ -1,6 +1,7 @@
 <?php
 require_once('stdlib.php');
 securePage();
+ifEmptyRedir();
 $database = databaseConnect();
 initPage($title='Activities', $styleSheetName='');
 drawNavBar($currentPage='Activities', $database);

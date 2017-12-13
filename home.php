@@ -43,8 +43,6 @@
 			}
 		}
 	 ?>
-<h4>New Comments</h4>
-	<p>To be implemented.</p>
 </div>
 </body>
 </html>
