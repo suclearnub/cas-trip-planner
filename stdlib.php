@@ -48,6 +48,12 @@
   }
 }
 
+  function ifEmptyRedir() {
+    if($_GET['id'] == NULL ) {
+      header('Location: home.php');
+    }
+  }
+
   function databaseConnect() {
     # Initiates a connection to the database
     $serverName = "mysql.cs.carmel.edu.hk";
@@ -104,6 +110,14 @@
     }
   }
 
+  function getActivityDesc($activityNo, $database) {
+    $results = getQuery("SELECT description FROM tripActivities WHERE tripActivitiesNo = $activityNo", $database);
+    while($row = $results -> fetch_assoc()) {
+      return $row['description'];
+    }
+    return NULL;
+  }
+
   function getTripName($tripNo, $database) {
     $results = getQuery("SELECT tripName FROM trips WHERE tripNo = $tripNo",$database);
     while($row = $results -> fetch_assoc()) {
@@ -136,6 +150,14 @@
       }
     }
     return $participantsList;
+  }
+
+  function getActivitiesParent($database, $activityNo) {
+    $parentTrip = getQuery("SELECT tripNo FROM tripActivities WHERE tripActivitiesNo = $activityNo", $database);
+    while($row = $parentTrip -> fetch_assoc()) {
+      return $row['tripNo'];
+    }
+    return NULL;
   }
 
   function drawNonSQLTable($data, $colNames){
@@ -218,21 +240,21 @@
   function drawCommentsBox($id, $table) {
     # Source: https://bootsnipp.com/snippets/featured/comment-box
     $currentURL = $_SERVER['REQUEST_URI'];
-    echo("<div class=\"container\">
-          <div class=\"row\">
-                      <div class=\"widget-area no-padding blank\">
-                      <div class=\"status-upload\">
-                        <form action='comment.php' method='post'>
-                          <input type='hidden' name='returnURL' value='$currentURL'>
-                          <input type='hidden' name='id' value='$id'>
-                          <input type='hidden' name='table' value='$table'>
-                          <textarea name='message' placeholder=\"Say something...\" ></textarea>
-                          <button type=\"submit\" class=\"btn btn-success green\"><i class=\"fa fa-share\"></i>Post</button>
-                        </form>
-                      </div>
-                    </div>
+    echo("<div class='container'>
+          <div class='row'>
+            <div class='widget-area no-padding blank'>
+            <div class='status-upload'>
+              <form action='comment.php' method='post'>
+                <input type='hidden' name='returnURL' value='$currentURL'>
+                <input type='hidden' name='id' value='$id'>
+                <input type='hidden' name='table' value='$table'>
+                <textarea name='message' placeholder=\"Say something...\" ></textarea>
+                <button type='submit' class='btn btn-success green'>Post</button>
+              </form>
+            </div>
+            </div>
           </div>
-      </div>");
+          </div>");
   }
 
   function insertComments($id, $table, $database, $message, $returnURL) {
