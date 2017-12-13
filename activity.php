@@ -15,6 +15,11 @@ if(checkPermission($database, [0, 2, 4] ,$_SESSION['userNo']) || inTrip($databas
   } else {
     drawTable("SELECT tripActivitiesNo, description, cost, CASE WHEN confirmed = 1 THEN 'Yes' WHEN confirmed = 2 THEN 'Rejected' ELSE 'No' END AS confirmed, startDate, endDate FROM tripActivities WHERE tripActivitiesNo = $_GET[id]", $database, ['ID', 'Description', 'Cost', 'Confirmation', 'Start Date', 'End Date'], 'activity', 'tripActivitesNo', 'id', ['noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable'], FALSE, 'noteditable');
   }
+  echo("<br><br>");
+
+  echo("<h2>Comments</h2>");
+  drawComments($_GET['id'], 'activities', $database);
+  drawCommentsBox($_GET['id'], 'activities');
 }
 else {
   header('Location: home.php');
