@@ -11,9 +11,9 @@ if(checkPermission($database, [0, 2, 4] ,$_SESSION['userNo']) || inTrip($databas
   echo("<h1>Activity for $tripName</h1>");
   echo("<h2>Overview:</h2>");
   if (checkPermission($database, [0, 2, 4], $_SESSION['userNo'])) {
-    drawTable("SELECT tripActivitiesNo, description, cost, confirmed, startDate, endDate FROM tripActivities WHERE tripActivitiesNo = $_GET[id]", $database, ['Description', 'Cost', 'Confirmation', 'Start Date', 'End Date'], 'activity', 'tripActivitesNo', 'id', ['noteditable', 'description', 'cost', 'confirmed', 'startDate', 'endDate'], TRUE, 'tripActivities');
+    drawTable("SELECT tripActivitiesNo, description, cost, confirmed, startDate, endDate FROM tripActivities WHERE tripActivitiesNo = $_GET[id]", $database, ['ID', 'Description', 'Cost', 'Confirmation', 'Start Date', 'End Date'], 'activity', 'tripActivitesNo', 'id', ['noteditable', 'description', 'cost', 'confirmed', 'startDate', 'endDate'], TRUE, 'tripActivities');
   } else {
-    drawTable("SELECT tripActivitiesNo, description, cost, confirmed, startDate, endDate FROM tripActivities WHERE tripActivitiesNo = $_GET[id]", $database, ['Description', 'Cost', 'Confirmation', 'Start Date', 'End Date'], 'activity', 'tripActivitesNo', 'id', ['noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable'], FALSE, 'noteditable');
+    drawTable("SELECT tripActivitiesNo, description, cost, confirmed, startDate, endDate FROM tripActivities WHERE tripActivitiesNo = $_GET[id]", $database, ['ID', 'Description', 'Cost', 'Confirmation', 'Start Date', 'End Date'], 'activity', 'tripActivitesNo', 'id', ['noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable', 'noteditable'], FALSE, 'noteditable');
   }
 }
 else {
