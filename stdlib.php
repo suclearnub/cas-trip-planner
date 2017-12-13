@@ -249,7 +249,7 @@
                 <input type='hidden' name='id' value='$id'>
                 <input type='hidden' name='table' value='$table'>
                 <textarea name='message' placeholder=\"Say something...\" ></textarea>
-                <button type='submit' class='btn btn-success green'><i class='fa fa-share'></i>Post</button>
+                <button type='submit' class='btn btn-success green'>Post</button>
               </form>
             </div>
             </div>
