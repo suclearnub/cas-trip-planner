@@ -299,41 +299,49 @@
     if($type == 'trips') {
       echo("<input type='text' class='form-control' placeholder='Trip name' required='True' autofocus='' name='tripName'><br>
             <input type='text' class='form-control' placeholder='Description' required='True' autofocus='' name='description'><br>
-            
-            <div class='input-group date' id='datetimepicker1'>
-              <input type='text' class='form-control' placeholder='Start date' />
-              <span class='input-group-addon'>
-                <span class='glyphicon glyphicon-calendar'></span>
-              </span>
+            <div class='form-group'>
+              <div class='input-group date' id='datetimepicker1'>
+                <input type='text' class='form-control' placeholder='Start date' />
+                <span class='input-group-addon'>
+                  <span class='glyphicon glyphicon-calendar'></span>
+                </span>
+               </div>
              </div>
+             
              <br>
-             <div class='input-group date' id='datetimepicker2'>
-              <input type='text' class='form-control'  placeholder='End date'/>
-              <span class='input-group-addon'>
-                <span class='glyphicon glyphicon-calendar'></span>
-              </span>
-              <input type='hidden' name='confirmed' value='False'>
-              </div>");
+             
+             <div class='form-group'>
+               <div class='input-group date' id='datetimepicker2'>
+                <input type='text' class='form-control'  placeholder='End date'/>
+                <span class='input-group-addon'>
+                  <span class='glyphicon glyphicon-calendar'></span>
+                </span>
+               </div>
+              </div>
+              <input type='hidden' name='confirmed' value='False'>");
     }
     else if($type == 'activities') {
       echo("<input type='hidden' name='tripNo' value='$_GET[id]'>
             <input type='text' class='form-control' placeholder='Description' required='True' autofocus='' name='description'><br>
             <input type='number' class='form-control' placeholder='Cost per person' required='True' autofocus='' name='cost'><br>
-            
-            <div class='input-group date' id='datetimepicker3'>
-              <input type='text' class='form-control' placeholder='Start date' />
-              <span class='input-group-addon'>
-                <span class='glyphicon glyphicon-calendar'></span>
-              </span>
+            <div class='form-group'>
+              <div class='input-group date' id='datetimepicker3'>
+                <input type='text' class='form-control' placeholder='Start date' />
+                <span class='input-group-addon'>
+                  <span class='glyphicon glyphicon-calendar'></span>
+                </span>
+              </div>
             </div>
             <br>
+            <div class='form-group'>
              <div class='input-group date' id='datetimepicker4'>
               <input type='text' class='form-control'  placeholder='End date'/>
               <span class='input-group-addon'>
                 <span class='glyphicon glyphicon-calendar'></span>
               </span>
-              <input type='hidden' name='confirmed' value='False'>
-              </div>");
+             </div>
+             </div>
+              <input type='hidden' name='confirmed' value='False'>");
 
     }
     else if($type == 'addStudent') {
