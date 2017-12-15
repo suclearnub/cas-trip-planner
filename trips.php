@@ -13,7 +13,14 @@ if (checkPermission($database, [0, 2, 4], $_SESSION['userNo']) || inTrip($databa
   echo("<h1>$tripName</h1>");
   echo("<h2>Overview:</h2>");
   drawNonSQLTable([[sizeof(getParticipants($_GET['id'], $database)), 'Cost Placeholder', getConfirmation($_GET['id'], 'trips', $database)]], ['Participants', 'Cost', 'Confirmation']);
-
+  if (checkPermission($database, [0, 2, 4], $_SESSION['userNo'])) {
+    drawModal($database, 'activities');
+    drawModal($database, 'addStudent');
+    drawModal($database, 'removeStudent');
+  }
+  else {
+    drawModal($database, 'activities');
+  }
   echo("<br><br>");
 
   echo("<h2>Participants</h2>");

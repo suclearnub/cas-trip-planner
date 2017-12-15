@@ -266,4 +266,94 @@
     }
   }
 
+  function getAllUsers($database) {
+    getQuery("SELECT CONCAT(firstName, ' ', lastName) AS name, userNo FROM users", $database);
+  }
+
+  function drawModal($database, $type) {
+    $name = ['trips' => 'New Trip', 'activities' => 'New Activity', 'addStudent' => 'Add a student', 'removeStudent' => 'Remove a student']; # Arrays act like dicts??
+    $table = ['trips' => 'trips', 'activities' => 'tripActivities', 'addStudent' => 'tripParticipants', 'removeStudent' => 'tripParticipants'];
+    $title = $name[$type] . '...';
+    $currentURL = $_SERVER['REQUEST_URI'];
+    # Here's the headers for getting a modal up
+    echo("<button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#myModal'>
+         $name[$type]
+         </button>
+        <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
+          <div class='modal-dialog' role='document'>
+            <div class='modal-content'>
+              <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                  <h4 class='modal-title' id='myModalLabel'>$title</h4>
+              </div>
+            <div class='modal-body'>
+            <form action='update.php' method='post' class='form-signin'>
+              <input type='hidden' name='returnURL' value='$currentURL'>
+              <input type='hidden' name='table' value='$table[$type]'>");
+    # and here's the juicy stuff
+    if($type == 'trips') {
+      echo("<input type='text' class='form-control' placeholder='Trip name' required='True' autofocus='' name='tripName'>
+            <input type='text' class='form-control' placeholder='Description' required='True' autofocus='' name='description'>
+            
+            <div class='input-group date' id='datetimepicker1'>
+              <input type='text' class='form-control' placeholder='Start date' />
+              <span class='input-group-addon'>
+                <span class='glyphicon glyphicon-calendar'></span>
+              </span>
+             <div class='input-group date' id='datetimepicker2'>
+              <input type='text' class='form-control'  placeholder='End date'/>
+              <span class='input-group-addon'>
+                <span class='glyphicon glyphicon-calendar'></span>
+              </span>
+              <input type='hidden' name='confirmed' value='False'>
+            ");
+    }
+    else if($type == 'activities') {
+      echo("<input type='hidden' name='tripNo' value='$_GET[id]'>
+            <input type='text' class='form-control' placeholder='Description' required='True' autofocus='' name='description'>
+            <input type='number' class='form-control' placeholder='Cost per person' required='True' autofocus='' name='cost'>
+            
+            <div class='input-group date' id='datetimepicker1'>
+              <input type='text' class='form-control' placeholder='Start date' />
+              <span class='input-group-addon'>
+                <span class='glyphicon glyphicon-calendar'></span>
+              </span>
+             <div class='input-group date' id='datetimepicker2'>
+              <input type='text' class='form-control'  placeholder='End date'/>
+              <span class='input-group-addon'>
+                <span class='glyphicon glyphicon-calendar'></span>
+              </span>
+              <input type='hidden' name='confirmed' value='False'>");
+    }
+    else if($type == 'addStudent') {
+      echo("<input type='hidden' name='tripNo' value='$_GET[id]'>
+            <select class='form-control' name='userNo' placeholder='Select a user'>");
+      $students = getQuery("SELECT CONCAT(firstName, ' ', lastName) AS name, userNo FROM users", $database);
+      while ($row = $students->fetch_assoc()) {
+        echo("<option value='$row[userNo]'>$row[name]</option>");
+      }
+      echo("</select>
+            <input type='hidden' name='confirmed' value='False'>");
+    }
+    else if($type == 'removeStudent') {
+      echo("<input type='hidden' name='tripNo' value='$_GET[id]'>
+            <select class='form-control' name='userNo' placeholder='Select a user'>");
+      $students = getQuery("SELECT CONCAT(firstName, ' ', lastName) AS name, userNo FROM users", $database);
+      while ($row = $students->fetch_assoc()) {
+        echo("<option value='$row[userNo]'>$row[name]</option>");
+      }
+      echo("</select>
+            <input type='hidden' name='confirmed' value='False'>");
+    }
+    echo("</div>
+          <div class='modal-footer'>
+            <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+            <button type='submit' class='btn btn-primary'>Save changes</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>");
+  }
+
  ?>
