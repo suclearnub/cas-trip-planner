@@ -276,10 +276,12 @@
     $title = $name[$type] . '...';
     $currentURL = $_SERVER['REQUEST_URI'];
     # Here's the headers for getting a modal up
-    echo("<button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#myModal'>
+    $dataTarget = "#myModal" . $type;
+    $dataTargetID = "myModal" . $type;
+    echo("<button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='$dataTarget'>
          $name[$type]
          </button>
-        <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
+        <div class='modal fade' id='$dataTargetID' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
           <div class='modal-dialog' role='document'>
             <div class='modal-content'>
               <div class='modal-header'>
@@ -315,14 +317,14 @@
             <input type='text' class='form-control' placeholder='Description' required='True' autofocus='' name='description'>
             <input type='number' class='form-control' placeholder='Cost per person' required='True' autofocus='' name='cost'>
             
-            <div class='input-group date' id='datetimepicker1'>
+            <div class='input-group date' id='datetimepicker3'>
               <input type='text' class='form-control' placeholder='Start date' />
               <span class='input-group-addon'>
                 <span class='glyphicon glyphicon-calendar'></span>
               </span>
             </div>
             
-             <div class='input-group date' id='datetimepicker2'>
+             <div class='input-group date' id='datetimepicker4'>
               <input type='text' class='form-control'  placeholder='End date'/>
               <span class='input-group-addon'>
                 <span class='glyphicon glyphicon-calendar'></span>
