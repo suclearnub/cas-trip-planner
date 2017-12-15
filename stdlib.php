@@ -299,22 +299,22 @@
     if($type == 'trips') {
       echo("<input type='text' class='form-control' placeholder='Trip name' required='True' autofocus='' name='tripName'><br>
             <input type='text' class='form-control' placeholder='Description' required='True' autofocus='' name='description'><br>
-            <input size='16' type='text' class='form_datetime' placeholder='Start date' name='startDate'>
+            <input size='16' type='text' class='form_datetime form-control' placeholder='Start date' name='startDate'>
              
             <br>
              
-            <input size='16' type='text' class='form_datetime' placeholder='End date' name='endDate'>
+            <input size='16' type='text' class='form_datetime form-control' placeholder='End date' name='endDate'>
             <input type='hidden' name='confirmed' value='False'>");
     }
     else if($type == 'activities') {
       echo("<input type='hidden' name='tripNo' value='$_GET[id]'>
             <input type='text' class='form-control' placeholder='Description' required='True' autofocus='' name='description'><br>
             <input type='number' class='form-control' placeholder='Cost per person' required='True' autofocus='' name='cost'><br>
-            <input size='16' type='text' class='form_datetime' placeholder='Start date' name='startDate'>
+            <input size='16' type='text' class='form_datetime form-control' placeholder='Start date' name='startDate'>
              
             <br>
              
-            <input size='16' type='text' class='form_datetime' placeholder='End date' name='endDate'>
+            <input size='16' type='text' class='form_datetime form-control' placeholder='End date' name='endDate'>
              <input type='hidden' name='confirmed' value='False'>");
 
     }
