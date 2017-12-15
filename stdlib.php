@@ -294,8 +294,8 @@
               <input type='hidden' name='table' value='$table[$type]'>");
     # and here's the juicy stuff
     if($type == 'trips') {
-      echo("<input type='text' class='form-control' placeholder='Trip name' required='True' autofocus='' name='tripName'>
-            <input type='text' class='form-control' placeholder='Description' required='True' autofocus='' name='description'>
+      echo("<input type='text' class='form-control' placeholder='Trip name' required='True' autofocus='' name='tripName'><br>
+            <input type='text' class='form-control' placeholder='Description' required='True' autofocus='' name='description'><br>
             
             <div class='input-group date' id='datetimepicker1'>
               <input type='text' class='form-control' placeholder='Start date' />
@@ -303,7 +303,7 @@
                 <span class='glyphicon glyphicon-calendar'></span>
               </span>
              </div>
-             
+             <br>
              <div class='input-group date' id='datetimepicker2'>
               <input type='text' class='form-control'  placeholder='End date'/>
               <span class='input-group-addon'>
@@ -314,8 +314,8 @@
     }
     else if($type == 'activities') {
       echo("<input type='hidden' name='tripNo' value='$_GET[id]'>
-            <input type='text' class='form-control' placeholder='Description' required='True' autofocus='' name='description'>
-            <input type='number' class='form-control' placeholder='Cost per person' required='True' autofocus='' name='cost'>
+            <input type='text' class='form-control' placeholder='Description' required='True' autofocus='' name='description'><br>
+            <input type='number' class='form-control' placeholder='Cost per person' required='True' autofocus='' name='cost'><br>
             
             <div class='input-group date' id='datetimepicker3'>
               <input type='text' class='form-control' placeholder='Start date' />
@@ -323,7 +323,7 @@
                 <span class='glyphicon glyphicon-calendar'></span>
               </span>
             </div>
-            
+            <br>
              <div class='input-group date' id='datetimepicker4'>
               <input type='text' class='form-control'  placeholder='End date'/>
               <span class='input-group-addon'>
@@ -334,18 +334,18 @@
 
     }
     else if($type == 'addStudent') {
-      echo("<input type='hidden' name='tripNo' value='$_GET[id]'>
-            <select class='form-control' name='userNo' placeholder='Select a user'>");
+      echo("<input type='hidden' name='tripNo' value='$_GET[id]'><br>
+            <select class='form-control' name='userNo' placeholder='Select a user'><br>");
       $students = getQuery("SELECT CONCAT(firstName, ' ', lastName) AS name, userNo FROM users", $database);
       while ($row = $students->fetch_assoc()) {
         echo("<option value='$row[userNo]'>$row[name]</option>");
       }
       echo("</select>
-            <input type='hidden' name='confirmed' value='False'>");
+            <input type='hidden' name='confirmed' value='False'><br>");
     }
     else if($type == 'removeStudent') {
       echo("<input type='hidden' name='tripNo' value='$_GET[id]'>
-            <select class='form-control' name='userNo' placeholder='Select a user'>");
+            <select class='form-control' name='userNo' placeholder='Select a user'><br>");
       $students = getQuery("SELECT CONCAT(firstName, ' ', lastName) AS name, userNo FROM users", $database);
       while ($row = $students->fetch_assoc()) {
         echo("<option value='$row[userNo]'>$row[name]</option>");
