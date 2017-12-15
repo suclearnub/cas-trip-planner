@@ -308,7 +308,7 @@
                 <span class='glyphicon glyphicon-calendar'></span>
               </span>
               <input type='hidden' name='confirmed' value='False'>
-            ");
+              </div>");
     }
     else if($type == 'activities') {
       echo("<input type='hidden' name='tripNo' value='$_GET[id]'>
@@ -327,7 +327,9 @@
               <span class='input-group-addon'>
                 <span class='glyphicon glyphicon-calendar'></span>
               </span>
-              <input type='hidden' name='confirmed' value='False'>");
+              <input type='hidden' name='confirmed' value='False'>
+              </div>");
+
     }
     else if($type == 'addStudent') {
       echo("<input type='hidden' name='tripNo' value='$_GET[id]'>
