@@ -17,6 +17,7 @@
         <script src ='//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js'></script>\r\n
         <script src='js/moment.min.js'></script>\r\n
         <script src='edit.js'></script>\r\n
+        <script src='modals.js'></script>
         </head>\r\n
         <body>\r\n");
 
