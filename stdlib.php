@@ -364,7 +364,7 @@
       echo("</select>
             <input type='hidden' name='confirmed' value='False'>");
     }
-    echo("</div>
+    echo("
           <div class='modal-footer'>
             <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
             <button type='submit' class='btn btn-primary'>Save changes</button>
@@ -372,6 +372,7 @@
             </form>
           </div>
         </div>
+      </div>
       </div>");
   }
 
