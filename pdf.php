@@ -46,6 +46,7 @@ $pdf->Ln(20);
 
 # Participants
 $pdf->Cell(40,10, 'Participants',1);
+$pdf->Ln(5);
 $pHeader = array("Name", "Confirmation", "Visa OK?", "Passport OK", "Paid?");
 $pQuery = getQuery("SELECT CONCAT(u.firstName, ' ', u.lastName) AS name, CASE WHEN confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed, CASE WHEN passportOK = 1 THEN 'Yes' ELSE 'No' END AS passportOK, CASE WHEN visaOK = 1 THEN 'Yes' ELSE 'No' END AS visaOK, CASE WHEN paid = 1 THEN 'Yes' ELSE 'No' END AS paid FROM tripParticipants t JOIN users u ON t.userNo = u.userNo WHERE t.tripNo = $_POST[tripNo]", $database);
 $pData = $pdf->loadData($pQuery);
@@ -55,6 +56,7 @@ $pdf->Ln(20);
 
 # Activities
 $pdf->Cell(40,10,'Activities',1);
+$pdf->Ln(5);
 $aHeader = array("Description", "Cost", "Start Date", "End Date", "Confirmation");
 $aQuery = getQuery("SELECT description, cost, startDate, endDate, confirmed FROM tripActivities WHERE tripNo = $_POST[tripNo]", $database);
 $aData = $pdf->loadData($aQuery);
