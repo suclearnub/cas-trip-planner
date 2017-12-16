@@ -17,6 +17,39 @@ if (checkPermission($database, [0, 2, 4], $_SESSION['userNo']) || inTrip($databa
     drawModal($database, 'activities');
     drawModal($database, 'addStudent');
     drawModal($database, 'removeStudent');
+    if(getConfirmation($_GET['id'], 'tripActivities', $database) == 'Yes') {
+      echo("<form action='pdf.php' method='post'>
+            <button type='submit' class='btn btn-primary btn-lg' >
+            Generate itinerary
+            </button>");
+    }
+    else {
+      echo("<button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#pdfWarning'>
+         Generate itinerary
+         </button>
+         
+        <div class='modal fade' id='pdfWarning' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
+          <div class='modal-dialog' role='document'>
+            <div class='modal-content'>
+              <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                  <h4 class='modal-title' id='pdfWarning'></h4>
+              </div>
+            <div class='modal-body'>
+                <div class='alert alert-danger'><p><b>Warning!</b> This trip hasn't been confirmed yet. Do you wish to continue?</p></div>
+            <div class='modal-footer'>
+            <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+          <form action='pdf.php' method='post'>
+            <button type='submit' class='btn btn-primary'>Continue</button>
+          </form>
+          </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      </div>");
+    }
+
   }
   else {
     drawModal($database, 'activities');
