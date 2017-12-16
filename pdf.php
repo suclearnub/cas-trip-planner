@@ -38,8 +38,8 @@ class PDF extends FPDF {
 # Title
 $pdf = new PDF();
 $pdf->AddPage();
-$pdf->SetFont('Times New Roman','', 16);
-$title = "Itinerary for: " . getTripName($_POST['id'], $database);
+$pdf->SetFont('Times','', 16);
+$title = "Itinerary for: " . getTripName($_POST['tripNo'], $database);
 $pdf->Cell(40,10, $title,1, 0, 'C');
 
 $pdf->Ln(20);
@@ -56,7 +56,7 @@ $pdf->Ln(20);
 # Activities
 $pdf->Cell(40,10,'Activities',1);
 $aHeader = array("Description", "Cost", "Start Date", "End Date", "Confirmation");
-$aQuery = getQuery("SELECT description, cost, startDate, endDate, confirmed FROM tripActivities WHERE tripNo = $_POST[id]", $database);
+$aQuery = getQuery("SELECT description, cost, startDate, endDate, confirmed FROM tripActivities WHERE tripNo = $_POST[tripNo]", $database);
 $aData = $pdf->loadData($aQuery);
 $pdf->drawTable($aHeader,$aData);
 $costPerStudent = sumPricePerPerson($_POST['id'], $database) * sizeof(getParticipants($_POST['id'], $database)) / sizeof(getTeacherParticipants($_POST['id'], $database));
