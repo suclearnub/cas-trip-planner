@@ -17,7 +17,7 @@ if (checkPermission($database, [0, 2, 4], $_SESSION['userNo']) || inTrip($databa
     drawModal($database, 'activities');
     drawModal($database, 'addStudent');
     drawModal($database, 'removeStudent');
-    if(getConfirmation($_GET['id'], 'tripActivities', $database) == 'Yes') {
+    if(getConfirmation($_GET['id'], 'trips', $database) == 'Yes') {
       echo("<form action='pdf.php' method='post'>
             <button type='submit' class='btn btn-primary btn-lg' >
             Generate itinerary
