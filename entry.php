@@ -7,7 +7,7 @@ if($_POST['table'] == 'trips') {
   getQuery("INSERT INTO trips (tripName, description, startDate, endDate, confirmed) VALUES ($_POST[tripName], $_POST[description], $_POST[startDate], $_POST[endDate], 0", $database);
   header('Location: ' . $_POST['returnURL']);
 }
-else if($_POST['table'] == 'activities') {
+else if($_POST['table'] == 'tripActivities') {
   getQuery("INSERT INTO tripActivities (tripNo, description, cost, startDate, endDate, confirmed) VALUES ($_POST[tripNo], $_POST[description], $_POST[cost], $_POST[startDate], $_POST[endDate], 0)", $database);
   header('Location: ' . $_POST['returnURL']);
 }
