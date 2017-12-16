@@ -275,7 +275,6 @@
 
   function drawModal($database, $type) {
     $name = ['trips' => 'New Trip', 'activities' => 'New Activity', 'addStudent' => 'Add a student', 'removeStudent' => 'Remove a student']; # Arrays act like dicts??
-    $table = ['trips' => 'trips', 'activities' => 'tripActivities', 'addStudent' => 'tripParticipants', 'removeStudent' => 'tripParticipants'];
     $title = $name[$type] . '...';
     $currentURL = $_SERVER['REQUEST_URI'];
     # Here's the headers for getting a modal up
@@ -294,7 +293,7 @@
             <div class='modal-body'>
             <form action='entry.php' method='post' class='form-signin'>
               <input type='hidden' name='returnURL' value='$currentURL'>
-              <input type='hidden' name='table' value='$table[$type]'>");
+              <input type='hidden' name='table' value='$type'>");
     # and here's the juicy stuff
     if($type == 'trips') {
       echo("<input type='text' class='form-control' placeholder='Trip name' required='True' autofocus='' name='tripName'><br>
