@@ -17,5 +17,6 @@ else if($_POST['table'] == 'addStudent') {
 }
 else if($_POST['table'] == 'removeStudent') {
   getQuery("DELETE FROM tripParticipants WHERE tripNo = $_POST[tripNo] AND userNo = $_POST[userNo]", $database);
+  header('Location: ' . $_POST['returnURL']);
 }
 ?>
