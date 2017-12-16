@@ -318,7 +318,7 @@
     else if($type == 'addStudent') {
       echo("<input type='hidden' name='tripNo' value='$_GET[id]'><br>
             <select class='form-control' name='userNo' placeholder='Select a user'><br>");
-      $students = getQuery("SELECT t.userNo, CONCAT(u.firstName, ' ', u.lastName) AS name FROM tripParticipants t JOIN users u ON t.userNo = u.userNo WHERE t.tripNo != $_GET[id]", $database);
+      $students = getQuery("SELECT u.userNo, CONCAT(u.firstName, ' ', u.lastName) AS name FROM users u WHERE NOT EXISTS (SELECT tripNo FROM tripParticipants t WHERE u.userNo = t.userNo AND t.tripNo = $_GET[id])", $database);
       while ($row = $students->fetch_assoc()) {
         echo("<option value='$row[userNo]'>$row[name]</option>");
       }
