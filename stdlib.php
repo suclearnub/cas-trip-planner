@@ -292,7 +292,7 @@
                   <h4 class='modal-title' id='myModalLabel'>$title</h4>
               </div>
             <div class='modal-body'>
-            <form action='update.php' method='post' class='form-signin'>
+            <form action='entry.php' method='post' class='form-signin'>
               <input type='hidden' name='returnURL' value='$currentURL'>
               <input type='hidden' name='table' value='$table[$type]'>");
     # and here's the juicy stuff
@@ -303,8 +303,7 @@
              
             <br>
              
-            <input size='16' type='text' class='form_datetime form-control' placeholder='End date' name='endDate'>
-            <input type='hidden' name='confirmed' value='False'>");
+            <input size='16' type='text' class='form_datetime form-control' placeholder='End date' name='endDate'>");
     }
     else if($type == 'activities') {
       echo("<input type='hidden' name='tripNo' value='$_GET[id]'>
@@ -314,8 +313,7 @@
              
             <br>
              
-            <input size='16' type='text' class='form_datetime form-control' placeholder='End date' name='endDate'>
-             <input type='hidden' name='confirmed' value='False'>");
+            <input size='16' type='text' class='form_datetime form-control' placeholder='End date' name='endDate'>");
 
     }
     else if($type == 'addStudent') {
@@ -325,18 +323,16 @@
       while ($row = $students->fetch_assoc()) {
         echo("<option value='$row[userNo]'>$row[name]</option>");
       }
-      echo("</select>
-            <input type='hidden' name='confirmed' value='False'><br>");
+      echo("</select>");
     }
     else if($type == 'removeStudent') {
       echo("<input type='hidden' name='tripNo' value='$_GET[id]'>
             <select class='form-control' name='userNo' placeholder='Select a user'><br>");
-      $students = getQuery("SELECT CONCAT(firstName, ' ', lastName) AS name, userNo FROM users", $database);
+      $students = getQuery("SELECT t.userNo, CONCAT(u.firstName, ' ', u.lastName) AS name FROM tripParticipants t JOIN users u ON t.userNo = u.userNo WHERE t.tripNo = $_GET[id]", $database);
       while ($row = $students->fetch_assoc()) {
         echo("<option value='$row[userNo]'>$row[name]</option>");
       }
-      echo("</select>
-            <input type='hidden' name='confirmed' value='False'>");
+      echo("</select>");
     }
     echo("
           <div class='modal-footer'>
