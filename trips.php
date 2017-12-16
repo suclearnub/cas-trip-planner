@@ -13,13 +13,20 @@ if (checkPermission($database, [0, 2, 4], $_SESSION['userNo']) || inTrip($databa
   echo("<h1>$tripName</h1>");
   echo("<h2>Overview:</h2>");
   drawNonSQLTable([[sizeof(getParticipants($_GET['id'], $database)), 'Cost Placeholder', getConfirmation($_GET['id'], 'trips', $database)]], ['Participants', 'Cost', 'Confirmation']);
-
+  if (checkPermission($database, [0, 2, 4], $_SESSION['userNo'])) {
+    drawModal($database, 'activities');
+    drawModal($database, 'addStudent');
+    drawModal($database, 'removeStudent');
+  }
+  else {
+    drawModal($database, 'activities');
+  }
   echo("<br><br>");
 
   echo("<h2>Participants</h2>");
   if(checkPermission($database, [0, 7, 8], $_SESSION['userNo'])) {
       # If they have unlimited power, view student details or view other student details, show them the full thing
-      drawTable("SELECT t.userNo, CONCAT(u.firstName, ' ', u.lastName) AS name, CASE WHEN confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed, CASE WHEN passportOK = 1 THEN 'Yes' ELSE 'No' END AS passportOK, CASE WHEN visaOK = 1 THEN 'Yes' ELSE 'No' END AS visaOK, CASE WHEN paid = 1 THEN 'Yes' ELSE 'No' END AS paid FROM tripParticipants t JOIN users u ON t.userNo = u.userNo WHERE t.tripNo = $_GET[id]
+    drawTable("SELECT t.userNo, CONCAT(u.firstName, ' ', u.lastName) AS name, CASE WHEN confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed, CASE WHEN passportOK = 1 THEN 'Yes' ELSE 'No' END AS passportOK, CASE WHEN visaOK = 1 THEN 'Yes' ELSE 'No' END AS visaOK, CASE WHEN paid = 1 THEN 'Yes' ELSE 'No' END AS paid FROM tripParticipants t JOIN users u ON t.userNo = u.userNo WHERE t.tripNo = $_GET[id]
 ", $database, ['User ID', 'Name', 'Confirmed', 'Passport OK?', 'Visa OK?', 'Paid?'], 'profile', 'userNo', 'id', ['noteditable', 'noteditable', 'confirmation', 'passportOK', 'visaOK', 'paid'], TRUE, 'tripParticipants');
   } else {
       # Just show them a list. Boring!

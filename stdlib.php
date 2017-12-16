@@ -10,13 +10,16 @@
         <link rel='stylesheet' href='$styleSheetName'>\r\n
         <link rel='stylesheet' href='master.css'>\r\n
         <link rel='stylesheet' href='comments.css'>\r\n
+        <link rel='stylesheet' href='datetime-picker/css/bootstrap-datetimepicker.min.css'>\r\n
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>\r\n
         <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>\r\n
         <link href='//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css' rel='stylesheet'/>\r\n
         <script src='//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js'></script>\r\n
         <script src ='//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js'></script>\r\n
         <script src='js/moment.min.js'></script>\r\n
+        <script type='text/javascript' src='datetime-picker/js/bootstrap-datetimepicker.min.js'></script>
         <script src='edit.js'></script>\r\n
+        <script src='modals.js'></script>
         </head>\r\n
         <body>\r\n");
 
@@ -264,6 +267,82 @@
     if($table == 'activities') {
       getQuery("INSERT INTO tripActivityComments (tripActivityNo, userNo, postDate, message) VALUES ($id, $_SESSION[userNo], CURRENT_TIMESTAMP, '$message')", $database);
     }
+  }
+
+  function getAllUsers($database) {
+    getQuery("SELECT CONCAT(firstName, ' ', lastName) AS name, userNo FROM users", $database);
+  }
+
+  function drawModal($database, $type) {
+    $name = ['trips' => 'New Trip', 'activities' => 'New Activity', 'addStudent' => 'Add a student', 'removeStudent' => 'Remove a student']; # Arrays act like dicts??
+    $title = $name[$type] . '...';
+    $currentURL = $_SERVER['REQUEST_URI'];
+    # Here's the headers for getting a modal up
+    $dataTarget = "#myModal" . $type;
+    $dataTargetID = "myModal" . $type;
+    echo("<button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='$dataTarget'>
+         $name[$type]
+         </button>
+        <div class='modal fade' id='$dataTargetID' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
+          <div class='modal-dialog' role='document'>
+            <div class='modal-content'>
+              <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                  <h4 class='modal-title' id='myModalLabel'>$title</h4>
+              </div>
+            <div class='modal-body'>
+            <form action='entry.php' method='post' class='form-signin'>
+              <input type='hidden' name='returnURL' value='$currentURL'>
+              <input type='hidden' name='table' value='$type'>");
+    # and here's the juicy stuff
+    if($type == 'trips') {
+      echo("<input type='text' class='form-control' placeholder='Trip name' required='True' autofocus='' name='tripName'><br>
+            <input type='text' class='form-control' placeholder='Description' required='True' autofocus='' name='description'><br>
+            <input size='16' type='text' class='form_datetime form-control' placeholder='Start date' name='startDate'>
+             
+            <br>
+             
+            <input size='16' type='text' class='form_datetime form-control' placeholder='End date' name='endDate'>");
+    }
+    else if($type == 'activities') {
+      echo("<input type='hidden' name='tripNo' value='$_GET[id]'>
+            <input type='text' class='form-control' placeholder='Description' required='True' autofocus='' name='description'><br>
+            <input type='number' class='form-control' placeholder='Cost per person' required='True' autofocus='' name='cost'><br>
+            <input size='16' type='text' class='form_datetime form-control' placeholder='Start date' name='startDate'>
+             
+            <br>
+             
+            <input size='16' type='text' class='form_datetime form-control' placeholder='End date' name='endDate'>");
+
+    }
+    else if($type == 'addStudent') {
+      echo("<input type='hidden' name='tripNo' value='$_GET[id]'><br>
+            <select class='form-control' name='userNo' placeholder='Select a user'><br>");
+      $students = getQuery("SELECT u.userNo, CONCAT(u.firstName, ' ', u.lastName) AS name FROM users u WHERE NOT EXISTS (SELECT tripNo FROM tripParticipants t WHERE u.userNo = t.userNo AND t.tripNo = $_GET[id])", $database);
+      while ($row = $students->fetch_assoc()) {
+        echo("<option value='$row[userNo]'>$row[name]</option>");
+      }
+      echo("</select>");
+    }
+    else if($type == 'removeStudent') {
+      echo("<input type='hidden' name='tripNo' value='$_GET[id]'>
+            <select class='form-control' name='userNo' placeholder='Select a user'><br>");
+      $students = getQuery("SELECT t.userNo, CONCAT(u.firstName, ' ', u.lastName) AS name FROM tripParticipants t JOIN users u ON t.userNo = u.userNo WHERE t.tripNo = $_GET[id]", $database);
+      while ($row = $students->fetch_assoc()) {
+        echo("<option value='$row[userNo]'>$row[name]</option>");
+      }
+      echo("</select>");
+    }
+    echo("
+          <div class='modal-footer'>
+            <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+            <button type='submit' class='btn btn-primary'>Save changes</button>
+          </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      </div>");
   }
 
  ?>
