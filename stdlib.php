@@ -155,6 +155,40 @@
     return $participantsList;
   }
 
+  function getStudentParticipants($tripNo, $database) {
+    # Takes a trip number and returns an array of participants
+    $participantsList = array();
+    $results = getQuery("SELECT t.userNo FROM tripParticipants t JOIN users u ON t.userNo = u.userNo WHERE t.tripNo = $tripNo AND u.isTeacher = 0", $database);
+    while($row = $results -> fetch_assoc()) {
+      foreach($row as $rowElement) {
+        $participantsList[] = $rowElement;
+      }
+    }
+    return $participantsList;
+  }
+
+  function getTeacherParticipants($tripNo, $database) {
+    # Takes a trip number and returns an array of participants
+    $participantsList = array();
+    $results = getQuery("SELECT t.userNo FROM tripParticipants t JOIN users u ON t.userNo = u.userNo WHERE t.tripNo = $tripNo AND u.isTeacher = 1", $database);
+    while($row = $results -> fetch_assoc()) {
+      foreach($row as $rowElement) {
+        $participantsList[] = $rowElement;
+      }
+    }
+    return $participantsList;
+  }
+
+  function sumPricePerPerson($tripNo, $database) {
+    $price = 0;
+    $results = getQuery("SELECT cost FROM tripActivities WHERE tripNo = $tripNo", $database);
+    while($row = $results -> fetch_assoc()) {
+      $price += $row['cost'];
+    }
+    return $price;
+  }
+
+
   function getActivitiesParent($database, $activityNo) {
     $parentTrip = getQuery("SELECT tripNo FROM tripActivities WHERE tripActivitiesNo = $activityNo", $database);
     while($row = $parentTrip -> fetch_assoc()) {
