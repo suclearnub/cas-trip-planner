@@ -160,7 +160,7 @@ $(document).ready(function() {
         ]
 
         ,name: 'confirmation'
-        ,params: {'table': 'tripActivities', 'pkName': 'trip' }
+        ,params: {'table': 'trips', 'pkName': 'tripNo' }
         ,url: 'edit.php'
     });
 });
