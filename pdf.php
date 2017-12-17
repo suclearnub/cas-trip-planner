@@ -20,7 +20,8 @@ class PDF extends FPDF {
 
   function drawTable($header, $data, $isActivities) {
     # Column widths
-    $w = array(40, 40, 40, 40, 40);
+    if(!$isActivities) { $w = array(40, 40, 40, 40, 40); }
+    else { $w = array(40, 40, 40, 40); }
     # Header
     for($i=0;$i<count($header);$i++)
       $this->Cell($w[$i],7,$header[$i],1,0,'C');
