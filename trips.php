@@ -13,10 +13,28 @@ if (checkPermission($database, [0, 2, 4], $_SESSION['userNo']) || inTrip($databa
   echo("<h1>$tripName</h1>");
   echo("<h2>Overview:</h2>");
   drawNonSQLTable([[sizeof(getParticipants($_GET['id'], $database)), 'Cost Placeholder', getConfirmation($_GET['id'], 'trips', $database)]], ['Participants', 'Cost', 'Confirmation']);
+
   if (checkPermission($database, [0, 2, 4], $_SESSION['userNo'])) {
     drawModal($database, 'activities');
     drawModal($database, 'addStudent');
     drawModal($database, 'removeStudent');
+
+    if(getQuery("SELECT * FROM tripActivities WHERE tripNo = $_GET[id] AND confirmed=0", $database)->fetch_assoc() != NULL ) {
+      # If there are still unconfirmed activities append that warning
+      $alertPendingActivities = "                <div class='alert alert-danger'><p><b>Warning!</b> There are still activites pending confirmation.</p></div>";
+    }
+    else {
+      $alertPendingActivities = "";
+    }
+
+    if(getQuery("SELECT * FROM tripParticipants WHERE tripNo = $_GET[id] AND confirmed = 0", $database)->fetch_assoc() != NULL) {
+      # If there are still unconfirmed participants append that warning
+      $alertPendingParticipants = "                <div class='alert alert-danger'><p><b>Warning!</b> There are still students that haven't been confirmed.</p></div>";
+    }
+    else {
+      $alertPendingParticipants = "";
+    }
+
     if(getConfirmation($_GET['id'], 'trips', $database) == 'Yes') {
       echo("<form action='pdf.php' method='post' target='_blank'>
             <input type='hidden' name='tripNo' value='$_GET[id]'>
@@ -37,7 +55,9 @@ if (checkPermission($database, [0, 2, 4], $_SESSION['userNo']) || inTrip($databa
                   <h4 class='modal-title' id='pdfWarning'></h4>
               </div>
             <div class='modal-body'>
-                <div class='alert alert-danger'><p><b>Warning!</b> This trip hasn't been confirmed yet. Do you wish to continue?</p></div>
+                <div class='alert alert-danger'><p><b>Warning!</b> This trip hasn't been confirmed yet.</p></div>
+                $alertPendingActivities
+                $alertPendingParticipants
             <div class='modal-footer'>
           <form action='pdf.php' method='post' target='_blank'>
             <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
