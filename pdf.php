@@ -46,13 +46,13 @@ $pdf = new PDF();
 $pdf->AddPage();
 $pdf->SetFont('Times','', 9);
 $title = "Itinerary for: " . getTripName($_POST['tripNo'], $database);
-$pdf->Cell(40,10, $title,1, 0, 'C');
+$pdf->Cell(40,10, $title,0, 0, 'C');
 
 $pdf->Ln(20);
 
 # Participants
-$pdf->Cell(40,10, 'Participants',1);
-$pdf->Ln(5);
+$pdf->Cell(40,10, 'Participants',0);
+$pdf->Ln(20);
 $pHeader = array("Name", "Confirmation", "Visa OK?", "Passport OK?", "Paid?");
 $pQuery = getQuery("SELECT CONCAT(u.firstName, ' ', u.lastName) AS name, CASE WHEN confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed, CASE WHEN passportOK = 1 THEN 'Yes' ELSE 'No' END AS passportOK, CASE WHEN visaOK = 1 THEN 'Yes' ELSE 'No' END AS visaOK, CASE WHEN paid = 1 THEN 'Yes' ELSE 'No' END AS paid FROM tripParticipants t JOIN users u ON t.userNo = u.userNo WHERE t.tripNo = $_POST[tripNo]", $database);
 $pData = $pdf->loadData($pQuery);
@@ -61,10 +61,10 @@ $pdf->drawTable($pHeader,$pData);
 $pdf->Ln(20);
 
 # Activities
-$pdf->Cell(40,10,'Activities',1);
-$pdf->Ln(5);
+$pdf->Cell(40,10,'Activities',0);
+$pdf->Ln(20);
 $aHeader = array("Description", "Cost", "Start Date", "End Date", "Confirmation");
-$aQuery = getQuery("SELECT description, cost, startDate, endDate, confirmed FROM tripActivities WHERE tripNo = $_POST[tripNo]", $database);
+$aQuery = getQuery("SELECT description, cost, startDate, endDate, CASE WHEN confirmed = 1 THEN 'Yes' WHEN confirmed = 2 THEN 'Rejected' ELSE 'No' END AS confirmed FROM tripActivities WHERE tripNo = $_POST[tripNo]", $database);
 $aData = $pdf->loadData($aQuery);
 $pdf->drawTable($aHeader,$aData);
 $costPerStudent = sumPricePerPerson($_POST['tripNo'], $database) * sizeof(getParticipants($_POST['tripNo'], $database)) / (sizeof(getStudentParticipants($_POST['tripNo'], $database)) - sizeof(getTeacherParticipants($_POST['tripNo'], $database)));
