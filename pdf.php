@@ -67,6 +67,7 @@ $aHeader = array("Description", "Cost", "Start Date", "End Date");
 $aQuery = getQuery("SELECT description, cost, startDate, endDate FROM tripActivities WHERE tripNo = $_POST[tripNo] AND confirmed = 1", $database);
 $aData = $pdf->loadData($aQuery);
 $pdf->drawTable($aHeader,$aData, TRUE);
+$this->Ln();
 $costPerStudent = sumPricePerPerson($_POST['tripNo'], $database) * sizeof(getParticipants($_POST['tripNo'], $database)) / (sizeof(getStudentParticipants($_POST['tripNo'], $database)) - sizeof(getTeacherParticipants($_POST['tripNo'], $database)));
 $pdf->Cell(40,10, 'Cost per student: ' . $costPerStudent,1);
 

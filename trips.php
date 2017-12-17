@@ -29,7 +29,7 @@ if (checkPermission($database, [0, 2, 4], $_SESSION['userNo']) || inTrip($databa
 
     if(getQuery("SELECT * FROM tripParticipants WHERE tripNo = $_GET[id] AND confirmed = 0", $database)->fetch_assoc() != NULL) {
       # If there are still unconfirmed participants append that warning
-      $alertPendingParticipants = "                <div class='alert alert-danger'><p><b>Warning!</b> There are still students that haven't been confirmed.</p></div>";
+      $alertPendingParticipants = "                <div class='alert alert-danger'><p><b>Warning!</b> There are still people pending confirmation.</p></div>";
     }
     else {
       $alertPendingParticipants = "";
@@ -52,10 +52,10 @@ if (checkPermission($database, [0, 2, 4], $_SESSION['userNo']) || inTrip($databa
             <div class='modal-content'>
               <div class='modal-header'>
                 <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-                  <h4 class='modal-title' id='pdfWarning'></h4>
+                  <h4 class='modal-title' id='pdfWarning'>Unconfirmed entries</h4>
               </div>
             <div class='modal-body'>
-                <div class='alert alert-danger'><p><b>Warning!</b> This trip hasn't been confirmed yet.</p></div>
+                <div class='alert alert-danger'><p><b>Warning!</b> This trip is pending confirmation.</p></div>
                 $alertPendingActivities
                 $alertPendingParticipants
             <div class='modal-footer'>
