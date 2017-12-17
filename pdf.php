@@ -9,7 +9,11 @@ class PDF extends FPDF {
   function loadData($queryResults) {
     $data = array();
     while ($row = $queryResults->fetch_assoc()) {
-      $data[] = $row;
+      $rowArray = [];
+      foreach($row as $rowEntry) {
+        $rowArray[] = $rowEntry;
+      }
+      $data[] = $rowArray;
     }
     return $data;
   }
@@ -40,7 +44,7 @@ class PDF extends FPDF {
 # Title
 $pdf = new PDF();
 $pdf->AddPage();
-$pdf->SetFont('Times','', 16);
+$pdf->SetFont('Times','', 9);
 $title = "Itinerary for: " . getTripName($_POST['tripNo'], $database);
 $pdf->Cell(40,10, $title,1, 0, 'C');
 
