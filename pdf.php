@@ -18,8 +18,7 @@ class PDF extends FPDF {
     return $data;
   }
 
-  function drawTable($header, $data) {
-    # drawTable is static to only 5 columns per row because we're just very lucky.
+  function drawTable($header, $data, $isActivities) {
     # Column widths
     $w = array(40, 40, 40, 40, 40);
     # Header
@@ -33,10 +32,10 @@ class PDF extends FPDF {
       $this->Cell($w[1],6,$row[1],'LR',0);
       $this->Cell($w[2],6,$row[2],'LR',0);
       $this->Cell($w[3],6,$row[3],'LR',0);
-      $this->Cell($w[4],6,$row[4],'LR',0);
+      if(!$isActivities) { $this->Cell($w[4],6,$row[4],'LR',0); }
       $this->Ln();
     }
-    // Closing line
+    # Closing line
     $this->Cell(array_sum($w),0,'','T');
   }
 
@@ -56,17 +55,17 @@ $pdf->Ln(20);
 $pHeader = array("Name", "Confirmation", "Visa OK?", "Passport OK?", "Paid?");
 $pQuery = getQuery("SELECT CONCAT(u.firstName, ' ', u.lastName) AS name, CASE WHEN confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed, CASE WHEN passportOK = 1 THEN 'Yes' ELSE 'No' END AS passportOK, CASE WHEN visaOK = 1 THEN 'Yes' ELSE 'No' END AS visaOK, CASE WHEN paid = 1 THEN 'Yes' ELSE 'No' END AS paid FROM tripParticipants t JOIN users u ON t.userNo = u.userNo WHERE t.tripNo = $_POST[tripNo]", $database);
 $pData = $pdf->loadData($pQuery);
-$pdf->drawTable($pHeader,$pData);
+$pdf->drawTable($pHeader,$pData, FALSE);
 
 $pdf->Ln(20);
 
 # Activities
 $pdf->Cell(40,10,'Activities',0);
 $pdf->Ln(20);
-$aHeader = array("Description", "Cost", "Start Date", "End Date", "Confirmation");
-$aQuery = getQuery("SELECT description, cost, startDate, endDate, CASE WHEN confirmed = 1 THEN 'Yes' WHEN confirmed = 2 THEN 'Rejected' ELSE 'No' END AS confirmed FROM tripActivities WHERE tripNo = $_POST[tripNo]", $database);
+$aHeader = array("Description", "Cost", "Start Date", "End Date");
+$aQuery = getQuery("SELECT description, cost, startDate, endDate FROM tripActivities WHERE tripNo = $_POST[tripNo] AND confirmed = 1", $database);
 $aData = $pdf->loadData($aQuery);
-$pdf->drawTable($aHeader,$aData);
+$pdf->drawTable($aHeader,$aData, TRUE);
 $costPerStudent = sumPricePerPerson($_POST['tripNo'], $database) * sizeof(getParticipants($_POST['tripNo'], $database)) / (sizeof(getStudentParticipants($_POST['tripNo'], $database)) - sizeof(getTeacherParticipants($_POST['tripNo'], $database)));
 $pdf->Cell(40,10, 'Cost per student: ' . $costPerStudent,1);
 
