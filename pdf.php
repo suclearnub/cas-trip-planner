@@ -15,19 +15,21 @@ class PDF extends FPDF {
   }
 
   function drawTable($header, $data) {
-    // Column widths
-    $w = array(40, 35, 40, 45);
-    // Header
+    # drawTable is static to only 5 columns per row because we're just very lucky.
+    # Column widths
+    $w = array(40, 40, 40, 40, 40);
+    # Header
     for($i=0;$i<count($header);$i++)
       $this->Cell($w[$i],7,$header[$i],1,0,'C');
     $this->Ln();
-    // Data
+    # Data
     foreach($data as $row)
     {
-      $this->Cell($w[0],6,$row[0],'LR');
-      $this->Cell($w[1],6,$row[1],'LR');
-      $this->Cell($w[2],6,number_format($row[2]),'LR',0,'R');
-      $this->Cell($w[3],6,number_format($row[3]),'LR',0,'R');
+      $this->Cell($w[0],6,$row[0],'LR',0);
+      $this->Cell($w[1],6,$row[1],'LR',0);
+      $this->Cell($w[2],6,$row[2],'LR',0);
+      $this->Cell($w[3],6,$row[3],'LR',0);
+      $this->Cell($w[4],6,$row[4],'LR',0);
       $this->Ln();
     }
     // Closing line
@@ -47,7 +49,7 @@ $pdf->Ln(20);
 # Participants
 $pdf->Cell(40,10, 'Participants',1);
 $pdf->Ln(5);
-$pHeader = array("Name", "Confirmation", "Visa OK?", "Passport OK", "Paid?");
+$pHeader = array("Name", "Confirmation", "Visa OK?", "Passport OK?", "Paid?");
 $pQuery = getQuery("SELECT CONCAT(u.firstName, ' ', u.lastName) AS name, CASE WHEN confirmed = 1 THEN 'Yes' ELSE 'No' END AS confirmed, CASE WHEN passportOK = 1 THEN 'Yes' ELSE 'No' END AS passportOK, CASE WHEN visaOK = 1 THEN 'Yes' ELSE 'No' END AS visaOK, CASE WHEN paid = 1 THEN 'Yes' ELSE 'No' END AS paid FROM tripParticipants t JOIN users u ON t.userNo = u.userNo WHERE t.tripNo = $_POST[tripNo]", $database);
 $pData = $pdf->loadData($pQuery);
 $pdf->drawTable($pHeader,$pData);
