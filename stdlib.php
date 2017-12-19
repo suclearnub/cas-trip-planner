@@ -24,6 +24,7 @@
         <body>\r\n");
 
   }
+
   function drawNavBar($currentPage, $database) {
     # Draws the navbar
     echo("<nav class='navbar navbar-inverse navbar-static-top'>\r\n
@@ -38,10 +39,12 @@
   if($results -> num_rows > 0) {
     while($row = $results -> fetch_assoc()) {
       if($row['text'] == $currentPage) {
-        echo("<li class='active'><a href='$row[target]'>$row[text] </a></li>");
+        if($row['requiresModal']) { drawNavBarModal($row['target'], $row['text'], $row['menuItemNo'], TRUE); }
+        else { echo("<li class='active'><a href='$row[target]'>$row[text] </a></li>"); }
       }
       else {
-        echo("<li><a href='$row[target]'>$row[text] </a></li>");
+        if($row['requiresModal']) { drawNavBarModal($row['target'], $row['text'], $row['menuItemNo'], FALSE); }
+        else { echo("<li><a href='$row[target]'>$row[text] </a></li>"); }
       }
     }
     echo("
@@ -50,6 +53,39 @@
 </nav>");
   }
 }
+
+  function drawNavBarModal($target, $text, $id, $current) {
+    $dataTarget = "#myModal" . $id;
+    $dataTargetID = "myModal" . $id;
+    if($current) {
+      echo("<li class='active'><a data-toggle='modal' data-target='$dataTarget'>$text</a></li>");
+    }
+    else {
+      echo("<li><a data-toggle='modal' data-target='$dataTarget'>$text</a></li>");
+    }
+    echo("<div class='modal fade' id='$dataTargetID' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
+          <div class='modal-dialog' role='document'>
+            <div class='modal-content'>
+              <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                  <h4 class='modal-title' id='$dataTargetID'>Unconfirmed entries</h4>
+              </div>
+            <div class='modal-body'>
+                <div class='alert alert-danger'><p><b>Warning!</b> This trip is pending confirmation.</p></div>
+            <div class='modal-footer'>
+          <form action='pdf.php' method='post' target='_blank'>
+            <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+            <button type='submit' class='btn btn-primary'>Continue</button>
+            <input type='hidden' name='tripNo' value='$_GET[id]'>
+          </form>
+          </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      </div>\");"
+
+  }
 
   function ifEmptyRedir() {
     if($_GET['id'] == NULL ) {
