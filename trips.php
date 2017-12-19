@@ -13,10 +13,65 @@ if (checkPermission($database, [0, 2, 4], $_SESSION['userNo']) || inTrip($databa
   echo("<h1>$tripName</h1>");
   echo("<h2>Overview:</h2>");
   drawNonSQLTable([[sizeof(getParticipants($_GET['id'], $database)), 'Cost Placeholder', getConfirmation($_GET['id'], 'trips', $database)]], ['Participants', 'Cost', 'Confirmation']);
+
   if (checkPermission($database, [0, 2, 4], $_SESSION['userNo'])) {
     drawModal($database, 'activities');
     drawModal($database, 'addStudent');
     drawModal($database, 'removeStudent');
+
+    if(getQuery("SELECT * FROM tripActivities WHERE tripNo = $_GET[id] AND confirmed=0", $database)->fetch_assoc() != NULL ) {
+      # If there are still unconfirmed activities append that warning
+      $alertPendingActivities = "                <div class='alert alert-danger'><p><b>Warning!</b> There are still activites pending confirmation.</p></div>";
+    }
+    else {
+      $alertPendingActivities = "";
+    }
+
+    if(getQuery("SELECT * FROM tripParticipants WHERE tripNo = $_GET[id] AND confirmed = 0", $database)->fetch_assoc() != NULL) {
+      # If there are still unconfirmed participants append that warning
+      $alertPendingParticipants = "                <div class='alert alert-danger'><p><b>Warning!</b> There are still people pending confirmation.</p></div>";
+    }
+    else {
+      $alertPendingParticipants = "";
+    }
+
+    if(getConfirmation($_GET['id'], 'trips', $database) == 'Yes') {
+      echo("<form action='pdf.php' method='post' target='_blank'>
+            <input type='hidden' name='tripNo' value='$_GET[id]'>
+            <button type='submit' class='btn btn-primary btn-lg' >
+            Generate itinerary
+            </button>");
+    }
+    else {
+      echo("<button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#pdfWarning'>
+         Generate itinerary
+         </button>
+         
+        <div class='modal fade' id='pdfWarning' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
+          <div class='modal-dialog' role='document'>
+            <div class='modal-content'>
+              <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                  <h4 class='modal-title' id='pdfWarning'>Unconfirmed entries</h4>
+              </div>
+            <div class='modal-body'>
+                <div class='alert alert-danger'><p><b>Warning!</b> This trip is pending confirmation.</p></div>
+                $alertPendingActivities
+                $alertPendingParticipants
+            <div class='modal-footer'>
+          <form action='pdf.php' method='post' target='_blank'>
+            <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+            <button type='submit' class='btn btn-primary'>Continue</button>
+            <input type='hidden' name='tripNo' value='$_GET[id]'>
+          </form>
+          </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      </div>");
+    }
+
   }
   else {
     drawModal($database, 'activities');
