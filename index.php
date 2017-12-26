@@ -27,9 +27,9 @@
                     <h4 class='modal-title' id='myModalLabel'>Sign up</h4>
                 </div>
                 <div class='modal-body'>
-                    <form action='signup.php' method='post' class='form-signin'>
+                    <form action='signup.php' method='post' class='form-signup'>
                         <input type='text' class='form-control' placeholder='Email address' required='True' autofocus='' name='description'><br>
-                        <input type='text' class='form-control' placeholder='Password' required='True' autofocus='' name='cost'><br>
+                        <input type='password' class='form-control' placeholder='Password' required='True' autofocus='' name='cost'><br>
                         <input type='text' class='form-control' placeholder='Recovery phrase' required='True' autofocus='' name='phrase'><br>
 
                         <div class='modal-footer'>
