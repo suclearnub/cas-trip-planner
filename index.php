@@ -16,9 +16,12 @@
   </button>
 </form>
 
-<button type='button' class="btn btn-primary btn-block form-misc" data-toggle='modal' data-target='#myModalSignUp'>
+<form class="form-misc">
+<button type='button' class="btn btn-primary btn-block" data-toggle='modal' data-target='#myModalSignUp'>
     Sign up
 </button>
+</form>
+
 <div class='modal fade' id='myModalSignUp' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
     <div class='modal-dialog' role='document'>
         <div class='modal-content'>
@@ -42,9 +45,12 @@
     </div>
 </div>
 
-<button type='button' class="btn btn-warning btn-block form-misc" data-toggle='modal' data-target='#myModalForgotPassword'>
+<form class="form-misc">
+<button type='button' class="btn btn-warning btn-block" data-toggle='modal' data-target='#myModalForgotPassword'>
     Forgot password?
 </button>
+</form>
+
 <div class='modal fade' id='myModalForgotPassword' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
     <div class='modal-dialog' role='document'>
         <div class='modal-content'>
