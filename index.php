@@ -16,7 +16,7 @@
   </button>
 </form>
 
-    <button type='button' class="btn btn-primary btn-block" data-toggle='modal' data-target='#myModalSignUp'>
+    <button type='button' class="btn btn-primary btn-block form-misc" data-toggle='modal' data-target='#myModalSignUp'>
         Sign up
     </button>
     <div class='modal fade' id='myModalSignUp' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
