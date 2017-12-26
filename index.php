@@ -16,37 +16,57 @@
   </button>
 </form>
 
-    <button type='button' class="btn btn-primary btn-block form-misc" data-toggle='modal' data-target='#myModalSignUp'>
-        Sign up
-    </button>
-    <div class='modal fade' id='myModalSignUp' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
-        <div class='modal-dialog' role='document'>
-            <div class='modal-content'>
-                <div class='modal-header'>
-                    <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-                    <h4 class='modal-title' id='myModalLabel'>Sign up</h4>
-                </div>
-                <div class='modal-body'>
-                    <form action='signup.php' method='post' class='form-signup'>
-                        <input type='text' class='form-control' placeholder='Email address' required='True' autofocus='' name='description'><br>
-                        <input type='password' class='form-control' placeholder='Password' required='True' autofocus='' name='cost'><br>
-                        <input type='text' class='form-control' placeholder='Recovery phrase' required='True' autofocus='' name='phrase'><br>
+<button type='button' class="btn btn-primary btn-block form-misc" data-toggle='modal' data-target='#myModalSignUp'>
+    Sign up
+</button>
+<div class='modal fade' id='myModalSignUp' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
+    <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                <h4 class='modal-title' id='myModalLabel'>Sign up</h4>
+            </div>
+            <div class='modal-body'>
+                <form action='signup.php' method='post' class='form-signup'>
+                    <input type='text' class='form-control' placeholder='Email address' required='True' autofocus='' name='description'><br>
+                    <input type='password' class='form-control' placeholder='Password' required='True' autofocus='' name='cost'><br>
+                    <input type='text' class='form-control' placeholder='Recovery phrase' required='True' autofocus='' name='phrase'><br>
 
-                        <div class='modal-footer'>
-                            <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-                            <button type='submit' class='btn btn-primary'>Save changes</button>
-                        </div>
-                    </form>
-                </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+                        <button type='submit' class='btn btn-primary'>Save changes</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-<form action="forgot.php" class="form-misc">
-  <button class="btn btn-warning btn-block" type="submit">
-    Forgot Password?
-  </button>
-</form>
+<button type='button' class="btn btn-warning btn-block form-misc" data-toggle='modal' data-target='#myModalForgotPassword'>
+    Forgot password?
+</button>
+<div class='modal fade' id='myModalForgotPassword' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
+    <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+                <h4 class='modal-title' id='myModalLabel'>Recover password</h4>
+            </div>
+            <div class='modal-body'>
+                <form action='reset.php' method='post' class='form-signup'>
+                    <input type='text' class='form-control' placeholder='Email address' required='True' autofocus='' name='description'><br>
+                    <input type='text' class='form-control' placeholder='Recovery phrase' required='True' autofocus='' name='phrase'><br>
+                    <input type='password' class='form-control' placeholder='New password' required='True' autofocus='' name='cost'><br>
+
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+                        <button type='submit' class='btn btn-primary'>Reset password</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 </div>
 </html>
