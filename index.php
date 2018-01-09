@@ -31,8 +31,14 @@
             </div>
             <div class='modal-body'>
                 <form action='signup.php' method='post' class='form-signup'>
-                    <input type='text' class='form-control' placeholder='Email address' required='True' autofocus='' name='description'><br>
-                    <input type='password' class='form-control' placeholder='Password' required='True' autofocus='' name='cost'><br>
+                    <input type='text' class='form-control' placeholder='First name' required='True' autofocus='' name='firstName'><br>
+                    <input type='text' class='form-control' placeholder='Last name' required='True' autofocus='' name='lastName'><br>
+                    <input type='text' class='form-control' placeholder='Email address' required='True' autofocus='' name='email'><br>
+                    <select class='form-control' placeholder='Gender' required='True' autofocus='' name='gender'>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>
+                    <input type='password' class='form-control' placeholder='Password' required='True' autofocus='' name='password'><br>
                     <input type='text' class='form-control' placeholder='Recovery phrase' required='True' autofocus='' name='phrase'><br>
 
                     <div class='modal-footer'>
@@ -60,7 +66,7 @@
             </div>
             <div class='modal-body'>
                 <form action='reset.php' method='post' class='form-signup'>
-                    <input type='text' class='form-control' placeholder='Email address' required='True' autofocus='' name='description'><br>
+                    <input type='text' class='form-control' placeholder='Email address' required='True' autofocus='' name='email'><br>
                     <input type='text' class='form-control' placeholder='Recovery phrase' required='True' autofocus='' name='phrase'><br>
                     <input type='password' class='form-control' placeholder='New password' required='True' autofocus='' name='cost'><br>
 
