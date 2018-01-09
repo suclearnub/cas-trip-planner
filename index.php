@@ -68,7 +68,7 @@
                 <form action='reset.php' method='post' class='form-signup'>
                     <input type='text' class='form-control' placeholder='Email address' required='True' autofocus='' name='email'><br>
                     <input type='text' class='form-control' placeholder='Recovery phrase' required='True' autofocus='' name='phrase'><br>
-                    <input type='password' class='form-control' placeholder='New password' required='True' autofocus='' name='cost'><br>
+                    <input type='password' class='form-control' placeholder='New password' required='True' autofocus='' name='password'><br>
 
                     <div class='modal-footer'>
                         <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
